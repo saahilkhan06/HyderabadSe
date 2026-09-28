@@ -3,10 +3,14 @@ import { z } from "zod";
 
 import { VoiceEnquiryModel } from "../models/VoiceEnquiry.js";
 
-import { sendNewVoiceEnquiryEmail } from "../email.js";
+import {
+  sendNewVoiceEnquiryEmail,
+  sendCustomerVoiceEnquiryConfirmationEmail,
+} from "../email.js";
 
 const createVoiceEnquirySchema = z.object({
   transcript: z.string().trim().min(1).max(5000),
+  email: z.string().trim().email(),
   source: z.literal("voice").optional(),
 });
 
@@ -33,14 +37,23 @@ export async function registerVoiceEnquiryRoutes(
         const enquiry =
           await VoiceEnquiryModel.create({
             transcript: parsed.data.transcript,
+            email: parsed.data.email,
             source: "voice",
           });
 
         const referenceId = String(enquiry._id);
 
+        // Send enquiry to HyderabadSe / admin
         await sendNewVoiceEnquiryEmail({
           referenceId,
           transcript: parsed.data.transcript,
+        });
+
+        // Send confirmation to customer
+        await sendCustomerVoiceEnquiryConfirmationEmail({
+          referenceId,
+          transcript: parsed.data.transcript,
+          email: parsed.data.email,
         });
 
         return reply.code(201).send({
