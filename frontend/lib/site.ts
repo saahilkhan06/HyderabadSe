@@ -5,10 +5,10 @@ export const siteConfig = {
   launchMessage: "Starting with Hyderabad. Expanding across India.",
   description:
     "A request-first Hyderabad-to-Gulf sourcing service. Request eligible products from Hyderabad or other parts of India and receive a clear quotation before confirmation.",
-  contactEmail: "[CONTACT_EMAIL]",
-  whatsappDisplay: "[WHATSAPP_NUMBER]",
-  whatsappUrl: "https://wa.me/[WHATSAPP_NUMBER]",
-  operatingLocation: "[INDIA_OPERATING_LOCATION]",
+  contactEmail: "hyderabadseorder@gmail.com",
+  whatsappDisplay: "+91 9666266807",
+  whatsappUrl: "https://wa.me/9666266807",
+  operatingLocation: "Ameerpet,Hyderabad",
   canonicalUrl: "https://[YOUR_DOMAIN]/",
 } as const;
 

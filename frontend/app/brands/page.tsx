@@ -370,9 +370,14 @@ export default function BrandsPage() {
         <div className="shell flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-white font-display text-lg text-ink">
-                G
-              </span>
+              <Image
+                src={"/webicon.png"}
+                alt={"H"}
+                width={48}
+                height={48}
+                className="h-12 w-12 object-cover rounded-full"
+                loading="lazy"
+              />
 
               <span className="font-display text-2xl">HyderabadSe</span>
             </div>

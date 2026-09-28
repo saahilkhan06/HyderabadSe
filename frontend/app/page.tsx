@@ -113,7 +113,6 @@ export default function HomePage() {
               <ArrowRight size={16} />
             </Link>
           </div>
-          {/* <MobileNav /> */}
         </div>
       </header>
 
@@ -818,9 +817,14 @@ export default function HomePage() {
           <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-start">
             <div>
               <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-white font-display text-lg text-ink">
-                  G
-                </span>
+                <Image
+                  src={"/webicon.png"}
+                  alt={"H"}
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 object-cover rounded-full"
+                  loading="lazy"
+                />
 
                 <span className="font-display text-2xl">HyderabadSe</span>
               </div>
@@ -830,9 +834,14 @@ export default function HomePage() {
               </p>
 
               <p className="mt-3 max-w-2xl break-words text-xs leading-5 text-white/35">
-                Email: {siteConfig.contactEmail} · WhatsApp:{" "}
-                {siteConfig.whatsappDisplay} · India location:{" "}
-                {siteConfig.operatingLocation}
+                <Link href="mailto:hyderabadseorder@gmail.com">
+                  Email: {siteConfig.contactEmail}
+                </Link>{" "}
+                ·{" "}
+                <Link href="https://wa.me/9666266807?text=Hi HyderabadSe, I would like to enquire about sourcing or ordering a product from Hyderabad,India.">
+                  WhatsApp: {siteConfig.whatsappDisplay}
+                </Link>{" "}
+                · India location: {siteConfig.operatingLocation}
               </p>
             </div>
 
