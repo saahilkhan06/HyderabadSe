@@ -17,13 +17,13 @@ import {
 
 import { CategoryIcon } from "@/components/Icon";
 // import { MobileNav } from "@/components/MobileNav";
-import VoiceEnquiryButton from "@/components/VoiceEnquiryButton";
+// import VoiceEnquiryButton from "@/components/VoiceEnquiryButton";
 import { RequestForm } from "@/components/RequestForm";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { categories, destinations, faqs, siteConfig } from "@/lib/site";
 import Link from "next/link";
 import Image from "next/image";
-import VoiceEnquiry from "@/components/VoiceEnquiry";
+// import VoiceEnquiry from "@/components/VoiceEnquiry";
 
 const nav = [
   ["Products we can source", "#products"],
@@ -217,7 +217,7 @@ export default function HomePage() {
               Request a product
             </Link>
 
-            <VoiceEnquiryButton />
+            {/* <VoiceEnquiryButton /> */}
           </div>
 
           {/* Mobile / tablet brand CTA */}
@@ -888,7 +888,7 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
-      <VoiceEnquiry />
+      {/* <VoiceEnquiry /> */}
     </main>
   );
 }
