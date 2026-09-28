@@ -383,33 +383,45 @@ export default function HomePage() {
           {categories.map((category, index) => (
             <article
               key={category.title}
-              className="group card p-5 transition duration-300 hover:-translate-y-1 hover:bg-white"
+              className="group relative overflow-hidden rounded-2xl border border-ink/10 bg-white transition duration-300 hover:-translate-y-1"
             >
-              <div className="flex items-start justify-between">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-white">
-                  <CategoryIcon name={category.icon} />
-                </span>
+              {/* Background image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
+                style={{ backgroundImage: `url(${category.image})` }}
+              />
 
-                <span className="text-[10px] font-bold uppercase tracking-[.15em] text-ink/35">
-                  0{index + 1}
-                </span>
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-cream/40 transition duration-200 group-hover:bg-cream/20" />
+
+              {/* Content */}
+              <div className="relative p-5">
+                <div className="flex items-start justify-between">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-white">
+                    <CategoryIcon name={category.icon} />
+                  </span>
+
+                  <span className="text-[10px] font-bold uppercase tracking-[.15em] text-ink/35">
+                    0{index + 1}
+                  </span>
+                </div>
+
+                <h3 className="mt-6 text-lg font-bold tracking-tight">
+                  {category.title}
+                </h3>
+
+                <p className="mt-2 min-h-[72px] text-base font-semibold">
+                  {category.copy}
+                </p>
+
+                <Link
+                  href="#request"
+                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-terracotta"
+                >
+                  Request this category
+                  <ArrowRight size={14} />
+                </Link>
               </div>
-
-              <h3 className="mt-6 text-lg font-bold tracking-tight">
-                {category.title}
-              </h3>
-
-              <p className="mt-2 min-h-[72px] text-sm leading-6 text-ink/55">
-                {category.copy}
-              </p>
-
-              <Link
-                href="#request"
-                className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-terracotta"
-              >
-                Request this category
-                <ArrowRight size={14} />
-              </Link>
             </article>
           ))}
         </div>
@@ -448,9 +460,9 @@ export default function HomePage() {
               </h2>
 
               <p className="mt-5 max-w-xl text-sm leading-6 text-ink/60">
-                Need something from India? Send us the name,detail, photo, link, or
-                shop. We’ll check where to find it, what it costs, and whether
-                it can be shipped to you.
+                Need something from India? Send us the name,detail, photo, link,
+                or shop. We’ll check where to find it, what it costs, and
+                whether it can be shipped to you.
               </p>
 
               <p className="mt-5 font-display text-xl italic text-ink/70">
@@ -765,7 +777,7 @@ export default function HomePage() {
             </div>
 
             <div className="rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-xs font-semibold text-white/55">
-              We’d love to hear your story {" "}
+              We’d love to hear your story{" "}
             </div>
           </div>
         </div>
