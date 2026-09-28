@@ -30,20 +30,26 @@ declare global {
 }
 
 export type ProductRequestPayload = {
+  // Required
   name: string;
   email: string;
   whatsapp: string;
   destinationCountry: string;
-  destinationCity: string;
   productName: string;
+
+  // Optional
+  destinationCity?: string;
   preferredBrand?: string;
   productUrl?: string;
-  quantity: string;
+  quantity?: string;
   budget?: string;
-  shippingPreference: "economy" | "express" | "not_sure";
+  shippingPreference?: "economy" | "express" | "not_sure";
   desiredDeliveryDate?: string;
   notes?: string;
+
+  // Consent remains required by the form
   consent: boolean;
+
   source?: "form" | "voice";
 };
 
@@ -58,12 +64,13 @@ const initial: ProductRequestPayload = {
   productName: "",
   preferredBrand: "",
   productUrl: "",
-  quantity: "1",
+  quantity: "",
   budget: "",
-  shippingPreference: "not_sure",
+  shippingPreference: undefined,
   desiredDeliveryDate: "",
   notes: "",
   consent: false,
+  source: "form",
 };
 
 export function RequestForm() {
@@ -109,19 +116,18 @@ export function RequestForm() {
     }
 
     /*
-     * Voice enquiry requires the basic customer information
-     * before we can submit the request.
+     * Voice enquiry requires the same basic customer information
+     * as the normal request form.
      */
     if (
       !currentForm.name.trim() ||
       !currentForm.email.trim() ||
       !currentForm.whatsapp.trim() ||
       !currentForm.destinationCountry.trim() ||
-      !currentForm.destinationCity.trim() ||
       !currentForm.consent
     ) {
       setError(
-        "Please complete your name, email, WhatsApp, destination and consent before starting a voice enquiry.",
+        "Please complete your name, email, WhatsApp number, destination country and consent before starting a voice enquiry.",
       );
 
       document.getElementById("request")?.scrollIntoView({
@@ -224,7 +230,7 @@ export function RequestForm() {
    *
    * This matches the event dispatched by VoiceEnquiryButton:
    *
-   * "hyderabadse-start-voice"
+   * "start-voice-enquiry"
    */
   useEffect(() => {
     const handleVoiceEnquiry = () => {
@@ -296,8 +302,8 @@ export function RequestForm() {
         </h3>
 
         <p className="mt-3 max-w-xl text-sm leading-6 text-ink/60">
-          We’ll review the details and contact you with the next step. This
-          request does not confirm an order or payment.
+          We&apos;ll review the details and contact you with the next step.
+          This request does not confirm an order or payment.
         </p>
 
         <button
@@ -319,6 +325,8 @@ export function RequestForm() {
   return (
     <form onSubmit={onSubmit} className="card p-5 sm:p-7" noValidate>
       <div className="grid gap-5 md:grid-cols-2">
+        {/* REQUIRED */}
+
         <Field label="Full name" required>
           <input
             id="name"
@@ -362,26 +370,15 @@ export function RequestForm() {
             className="field"
             value={form.destinationCountry}
             onChange={(e) => set("destinationCountry", e.target.value)}
-          >
-            <option>UAE</option>
-            <option>Saudi Arabia</option>
-            <option>Qatar</option>
-            <option>Kuwait</option>
-            <option>Oman</option>
-            <option>Bahrain</option>
-          </select>
-        </Field>
-
-        <Field label="Destination city or area" required>
-          <input
-            id="destinationCity"
-            aria-label="Destination city or area"
-            className="field"
-            value={form.destinationCity}
-            onChange={(e) => set("destinationCity", e.target.value)}
-            placeholder="e.g. Dubai Marina"
             required
-          />
+          >
+            <option value="UAE">UAE</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="Qatar">Qatar</option>
+            <option value="Kuwait">Kuwait</option>
+            <option value="Oman">Oman</option>
+            <option value="Bahrain">Bahrain</option>
+          </select>
         </Field>
 
         <Field label="Product name or description" required>
@@ -396,56 +393,77 @@ export function RequestForm() {
           />
         </Field>
 
+        {/* OPTIONAL */}
+
+        <Field label="Destination city or area">
+          <input
+            id="destinationCity"
+            aria-label="Destination city or area"
+            className="field"
+            value={form.destinationCity ?? ""}
+            onChange={(e) => set("destinationCity", e.target.value)}
+            placeholder="e.g. Dubai Marina"
+          />
+        </Field>
+
         <Field label="Preferred brand, shop, or seller">
           <input
             id="preferredBrand"
             aria-label="Preferred brand, shop, or seller"
             className="field"
-            value={form.preferredBrand}
+            value={form.preferredBrand ?? ""}
             onChange={(e) => set("preferredBrand", e.target.value)}
           />
         </Field>
 
+        {/* Product link can be enabled later if needed. */}
+        {/*
         <Field label="Product link">
           <input
             id="productUrl"
             aria-label="Product link"
             className="field"
             type="url"
-            value={form.productUrl}
+            value={form.productUrl ?? ""}
             onChange={(e) => set("productUrl", e.target.value)}
             placeholder="https://…"
           />
         </Field>
+        */}
 
-        <Field label="Quantity" required>
+        <Field label="Quantity">
           <input
             id="quantity"
             aria-label="Quantity"
             className="field"
-            value={form.quantity}
+            value={form.quantity ?? ""}
             onChange={(e) => set("quantity", e.target.value)}
-            required
+            placeholder="e.g. 1"
           />
         </Field>
 
-        <Field label="Budget (optional)">
+        {/* Budget can be enabled later if needed. */}
+        {/*
+        <Field label="Budget">
           <input
             id="budget"
             aria-label="Budget"
             className="field"
-            value={form.budget}
+            value={form.budget ?? ""}
             onChange={(e) => set("budget", e.target.value)}
             placeholder="Currency + amount"
           />
         </Field>
+        */}
 
-        <Field label="Delivery preference" required>
+        {/* Delivery preference can be enabled later if needed. */}
+        {/*
+        <Field label="Delivery preference">
           <select
             id="shippingPreference"
             aria-label="Delivery preference"
             className="field"
-            value={form.shippingPreference}
+            value={form.shippingPreference ?? "not_sure"}
             onChange={(e) =>
               set(
                 "shippingPreference",
@@ -458,17 +476,21 @@ export function RequestForm() {
             <option value="not_sure">Not sure</option>
           </select>
         </Field>
+        */}
 
-        <Field label="Desired delivery date (optional)">
+        {/* Desired delivery date can be enabled later if needed. */}
+        {/*
+        <Field label="Desired delivery date">
           <input
             id="desiredDeliveryDate"
             aria-label="Desired delivery date"
             className="field"
             type="date"
-            value={form.desiredDeliveryDate}
+            value={form.desiredDeliveryDate ?? ""}
             onChange={(e) => set("desiredDeliveryDate", e.target.value)}
           />
         </Field>
+        */}
       </div>
 
       <div className="mt-5 grid gap-5 md:grid-cols-2">
@@ -477,13 +499,14 @@ export function RequestForm() {
             id="notes"
             aria-label="Additional notes"
             className="field min-h-32 resize-y py-3"
-            value={form.notes}
+            value={form.notes ?? ""}
             onChange={(e) => set("notes", e.target.value)}
             placeholder="Colour, size, seller details, substitutions, etc."
           />
         </Field>
       </div>
 
+      {/* Consent remains required */}
       <label className="mt-5 flex items-start gap-3 text-sm text-ink/65">
         <input
           type="checkbox"
@@ -494,8 +517,8 @@ export function RequestForm() {
         />
 
         <span>
-          I agree that HyderabadSe may contact me about this request and use the
-          submitted information to process it.
+          I agree that HyderabadSe may contact me about this request and use
+          the submitted information to process it.
         </span>
       </label>
 
@@ -512,12 +535,13 @@ export function RequestForm() {
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-xl text-xs leading-5 text-ink/50">
-          Submitting this form starts a request. It does not confirm an order or
-          payment. We verify availability, eligibility, pricing, and delivery
-          before confirmation.
+          Submitting this form starts a request. It does not confirm an order
+          or payment. We verify availability, eligibility, pricing, and
+          delivery before confirmation.
         </p>
 
         <button
+          type="submit"
           className="button-primary shrink-0"
           disabled={status === "loading"}
         >

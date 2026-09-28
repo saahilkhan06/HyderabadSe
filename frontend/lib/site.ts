@@ -8,7 +8,7 @@ export const siteConfig = {
   contactEmail: "hyderabadseorder@gmail.com",
   whatsappDisplay: "+91 9666266807",
   whatsappUrl: "https://wa.me/9666266807",
-  operatingLocation: "Ameerpet,Hyderabad",
+  operatingLocation: "BanjarHills,Hyderabad",
   canonicalUrl: "https://[YOUR_DOMAIN]/",
 } as const;
 
