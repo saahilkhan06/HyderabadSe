@@ -17,8 +17,7 @@ type SpeechRecognitionLike = {
   onerror: ((event: { error: string }) => void) | null;
 };
 
-type SpeechRecognitionConstructor =
-  new () => SpeechRecognitionLike;
+type SpeechRecognitionConstructor = new () => SpeechRecognitionLike;
 
 declare global {
   interface Window {
@@ -28,8 +27,7 @@ declare global {
 }
 
 const API_URL = (
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:4000"
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"
 ).replace(/\/$/, "");
 
 const SILENCE_DELAY = 3000;
@@ -44,8 +42,7 @@ export default function VoiceEnquiry() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const recognitionRef =
-    useRef<SpeechRecognitionLike | null>(null);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
 
   const transcriptRef = useRef("");
   const listeningRef = useRef(false);
@@ -53,11 +50,9 @@ export default function VoiceEnquiry() {
 
   const emailRef = useRef("");
 
-  const silenceTimerRef =
-    useRef<ReturnType<typeof setTimeout> | null>(null);
+  const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const successTimerRef =
-    useRef<ReturnType<typeof setTimeout> | null>(null);
+  const successTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const shouldRestartRef = useRef(false);
 
@@ -77,11 +72,9 @@ export default function VoiceEnquiry() {
     };
 
     const submitVoiceEnquiry = async () => {
-      const finalTranscript =
-        transcriptRef.current.trim();
+      const finalTranscript = transcriptRef.current.trim();
 
-      const customerEmail =
-        emailRef.current.trim();
+      const customerEmail = emailRef.current.trim();
 
       if (!finalTranscript) {
         setError("Please speak your enquiry first.");
@@ -89,21 +82,14 @@ export default function VoiceEnquiry() {
       }
 
       if (!customerEmail) {
-        setError(
-          "Please enter your email address before sending.",
-        );
+        setError("Please enter your email address before sending.");
         return;
       }
 
-      const emailIsValid =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-          customerEmail,
-        );
+      const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail);
 
       if (!emailIsValid) {
-        setError(
-          "Please enter a valid email address.",
-        );
+        setError("Please enter a valid email address.");
         return;
       }
 
@@ -118,24 +104,19 @@ export default function VoiceEnquiry() {
       setSuccess("");
 
       try {
-        const response = await fetch(
-          `${API_URL}/api/voice-enquiries`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              transcript: finalTranscript,
-              email: customerEmail,
-              source: "voice",
-            }),
+        const response = await fetch(`${API_URL}/api/voice-enquiries`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-        );
+          body: JSON.stringify({
+            transcript: finalTranscript,
+            email: customerEmail,
+            source: "voice",
+          }),
+        });
 
-        const data = (await response
-          .json()
-          .catch(() => ({}))) as {
+        const data = (await response.json().catch(() => ({}))) as {
           success?: boolean;
           referenceId?: string;
           message?: string;
@@ -150,29 +131,22 @@ export default function VoiceEnquiry() {
           );
         }
 
-        setSuccess(
-          data.message ||
-            "Your enquiry has been sent successfully.",
-        );
+        setSuccess(data.message || "Your enquiry has been sent successfully.");
 
         clearSuccessTimer();
 
-        successTimerRef.current =
-          setTimeout(() => {
-            setSuccess("");
-            setTranscript("");
-            transcriptRef.current = "";
+        successTimerRef.current = setTimeout(() => {
+          setSuccess("");
+          setTranscript("");
+          transcriptRef.current = "";
 
-            setEmail("");
-            emailRef.current = "";
+          setEmail("");
+          emailRef.current = "";
 
-            setError("");
-          }, 4000);
+          setError("");
+        }, 4000);
       } catch (error) {
-        console.error(
-          "Voice enquiry submission failed:",
-          error,
-        );
+        console.error("Voice enquiry submission failed:", error);
 
         setError(
           error instanceof Error
@@ -186,13 +160,9 @@ export default function VoiceEnquiry() {
     };
 
     const startRecognition = () => {
-      const recognition =
-        recognitionRef.current;
+      const recognition = recognitionRef.current;
 
-      if (
-        !recognition ||
-        submittingRef.current
-      ) {
+      if (!recognition || submittingRef.current) {
         return;
       }
 
@@ -207,21 +177,19 @@ export default function VoiceEnquiry() {
     const stopListeningAfterSilence = () => {
       clearSilenceTimer();
 
-      silenceTimerRef.current =
-        setTimeout(() => {
-          shouldRestartRef.current = false;
-          listeningRef.current = false;
+      silenceTimerRef.current = setTimeout(() => {
+        shouldRestartRef.current = false;
+        listeningRef.current = false;
 
-          setIsListening(false);
+        setIsListening(false);
 
-          recognitionRef.current?.stop();
-        }, SILENCE_DELAY);
+        recognitionRef.current?.stop();
+      }, SILENCE_DELAY);
     };
 
     const startVoiceEnquiry = () => {
       const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
+        window.SpeechRecognition || window.webkitSpeechRecognition;
 
       if (!SpeechRecognition) {
         setError(
@@ -230,10 +198,7 @@ export default function VoiceEnquiry() {
         return;
       }
 
-      if (
-        listeningRef.current ||
-        submittingRef.current
-      ) {
+      if (listeningRef.current || submittingRef.current) {
         return;
       }
 
@@ -253,8 +218,7 @@ export default function VoiceEnquiry() {
 
       setIsListening(true);
 
-      const recognition =
-        new SpeechRecognition();
+      const recognition = new SpeechRecognition();
 
       recognition.lang = "en-IN";
       recognition.continuous = true;
@@ -263,13 +227,8 @@ export default function VoiceEnquiry() {
       recognition.onresult = (event) => {
         let text = "";
 
-        for (
-          let i = 0;
-          i < event.results.length;
-          i++
-        ) {
-          text +=
-            event.results[i][0].transcript;
+        for (let i = 0; i < event.results.length; i++) {
+          text += event.results[i][0].transcript;
         }
 
         const finalText = text.trim();
@@ -289,15 +248,9 @@ export default function VoiceEnquiry() {
 
       recognition.onerror = (event) => {
         if (event.error === "no-speech") {
-          if (
-            listeningRef.current &&
-            shouldRestartRef.current
-          ) {
+          if (listeningRef.current && shouldRestartRef.current) {
             setTimeout(() => {
-              if (
-                listeningRef.current &&
-                shouldRestartRef.current
-              ) {
+              if (listeningRef.current && shouldRestartRef.current) {
                 startRecognition();
               }
             }, 100);
@@ -317,9 +270,7 @@ export default function VoiceEnquiry() {
 
         clearSilenceTimer();
 
-        setError(
-          "We could not hear your enquiry. Please try again.",
-        );
+        setError("We could not hear your enquiry. Please try again.");
       };
 
       recognition.onend = () => {
@@ -347,26 +298,18 @@ export default function VoiceEnquiry() {
       try {
         recognition.start();
       } catch (error) {
-        console.error(
-          "Could not start voice recognition:",
-          error,
-        );
+        console.error("Could not start voice recognition:", error);
 
         listeningRef.current = false;
         shouldRestartRef.current = false;
 
         setIsListening(false);
 
-        setError(
-          "We could not start the microphone. Please try again.",
-        );
+        setError("We could not start the microphone. Please try again.");
       }
     };
 
-    window.addEventListener(
-      "hyderabadse-start-voice",
-      startVoiceEnquiry,
-    );
+    window.addEventListener("hyderabadse-start-voice", startVoiceEnquiry);
 
     // Store submit function so the button can call it.
     (
@@ -376,10 +319,7 @@ export default function VoiceEnquiry() {
     ).hyderabadseSubmitVoiceEnquiry = submitVoiceEnquiry;
 
     return () => {
-      window.removeEventListener(
-        "hyderabadse-start-voice",
-        startVoiceEnquiry,
-      );
+      window.removeEventListener("hyderabadse-start-voice", startVoiceEnquiry);
 
       clearSilenceTimer();
       clearSuccessTimer();
@@ -399,25 +339,19 @@ export default function VoiceEnquiry() {
   }, []);
 
   const handleSend = () => {
-    const submit =
-      (
-        window as Window & {
-          hyderabadseSubmitVoiceEnquiry?: () => void;
-        }
-      ).hyderabadseSubmitVoiceEnquiry;
+    const submit = (
+      window as Window & {
+        hyderabadseSubmitVoiceEnquiry?: () => void;
+      }
+    ).hyderabadseSubmitVoiceEnquiry;
 
     submit?.();
   };
 
   return (
     <div className="fixed bottom-6 left-1/2 z-[100] w-[min(90vw,600px)] -translate-x-1/2">
-      {(isListening ||
-        isSubmitting ||
-        transcript ||
-        error ||
-        success) && (
+      {(isListening || isSubmitting || transcript || error || success) && (
         <div className="rounded-2xl border border-ink/10 bg-white p-5 shadow-xl">
-
           {isListening && (
             <p className="mb-3 text-sm font-medium text-orange-500">
               Listening...
@@ -432,9 +366,7 @@ export default function VoiceEnquiry() {
 
           {transcript && (
             <div>
-              <p className="text-base leading-relaxed text-ink">
-                {transcript}
-              </p>
+              <p className="text-base leading-relaxed text-ink">{transcript}</p>
             </div>
           )}
 
@@ -452,8 +384,7 @@ export default function VoiceEnquiry() {
                 type="email"
                 value={email}
                 onChange={(event) => {
-                  const value =
-                    event.target.value;
+                  const value = event.target.value;
 
                   setEmail(value);
                   emailRef.current = value;
@@ -469,8 +400,7 @@ export default function VoiceEnquiry() {
               />
 
               <p className="mt-2 text-xs text-slate-500">
-                We'll send your enquiry confirmation
-                to this email address.
+                We&apos;ll send your enquiry confirmation to this email address.
               </p>
 
               <button
@@ -479,24 +409,16 @@ export default function VoiceEnquiry() {
                 disabled={isSubmitting}
                 className="mt-4 w-full rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {isSubmitting
-                  ? "Sending..."
-                  : "Send enquiry"}
+                {isSubmitting ? "Sending..." : "Send enquiry"}
               </button>
             </div>
           )}
 
           {success && (
-            <p className="mt-3 text-sm font-medium text-green-600">
-              {success}
-            </p>
+            <p className="mt-3 text-sm font-medium text-green-600">{success}</p>
           )}
 
-          {error && (
-            <p className="mt-3 text-sm text-red-600">
-              {error}
-            </p>
-          )}
+          {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
         </div>
       )}
     </div>
