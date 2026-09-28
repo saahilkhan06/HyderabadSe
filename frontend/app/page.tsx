@@ -19,7 +19,7 @@ import { CategoryIcon } from "@/components/Icon";
 // import { MobileNav } from "@/components/MobileNav";
 // import VoiceEnquiryButton from "@/components/VoiceEnquiryButton";
 import { RequestForm } from "@/components/RequestForm";
-import WhatsAppButton from "@/components/WhatsAppButton";
+// import WhatsAppButton from "@/components/WhatsAppButton";
 import { categories, destinations, faqs, siteConfig } from "@/lib/site";
 import Link from "next/link";
 import Image from "next/image";
@@ -279,7 +279,7 @@ export default function HomePage() {
       ========================================================= */}
 
       {/* WhatsApp stays on the right */}
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
 
       {/* Mobile brand button stays on the left */}
       <Link
@@ -754,7 +754,8 @@ export default function HomePage() {
               </p>
 
               <h2 className="section-title mt-3 max-w-2xl text-white">
-                Customer stories will appear here after completed requests.
+                We’ll be happy to hear from you! Complete your first request and
+                share your experience with us.
               </h2>
 
               <p className="mt-4 max-w-xl text-sm leading-6 text-white/50">
@@ -764,7 +765,7 @@ export default function HomePage() {
             </div>
 
             <div className="rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-xs font-semibold text-white/55">
-              Review component ready for approved customer stories.
+              We’d love to hear your story {" "}
             </div>
           </div>
         </div>
@@ -861,19 +862,19 @@ export default function HomePage() {
                 FAQ
               </Link>
 
-              <Link href="#" className="hover:text-white">
+              <Link href="/privacy-policy" className="hover:text-white">
                 Privacy policy
               </Link>
 
-              <Link href="#" className="hover:text-white">
+              <Link href="/terms" className="hover:text-white">
                 Terms
               </Link>
 
-              <Link href="#" className="hover:text-white">
+              <Link href="/cancellation-refund" className="hover:text-white">
                 Cancellation & refund
               </Link>
 
-              <Link href="#" className="hover:text-white">
+              <Link href="/shipping-customs" className="hover:text-white">
                 Shipping & customs
               </Link>
             </div>
@@ -936,7 +937,7 @@ function RouteVisual() {
           </div>
 
           <span className="absolute left-[5%] top-[67%] text-[10px] font-bold sm:left-[7%] sm:text-xs">
-            Hyderabad
+            Hyderabad,India
           </span>
 
           <span className="absolute right-[3%] top-[52%] text-[10px] font-bold sm:right-[5%] sm:text-xs">

@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
+import WhatsAppButton from "@/components/WhatsAppButton";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(
     siteConfig.canonicalUrl.replace("[YOUR_DOMAIN]", "example.com"),
   ),
-  title: "HyderabadSe | India-to-Gulf Product Sourcing",
+  title: "HyderabadSe | Hyd-to-Gulf Product Sourcing",
   description: siteConfig.description,
   alternates: { canonical: siteConfig.canonicalUrl },
   icons: {
@@ -44,6 +46,7 @@ export default function RootLayout({
         />
 
         {children}
+        <WhatsAppButton/>
 
       </body>
     </html>
