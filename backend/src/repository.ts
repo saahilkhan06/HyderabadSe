@@ -23,31 +23,48 @@ async function uniqueReferenceId(): Promise<string> {
 
 export async function createProductRequest(input: CreateProductRequest) {
   const referenceId = await uniqueReferenceId();
+
   const request = await ProductRequestModel.create({
     referenceId,
+
     customer: {
       name: input.name,
       email: input.email,
       whatsapp: input.whatsapp,
     },
+
     destination: {
       country: input.destinationCountry,
-      city: input.destinationCity,
+      ...(input.destinationCity ? { city: input.destinationCity } : {}),
     },
+
     product: {
       name: input.productName,
-      preferredBrand: input.preferredBrand,
-      productUrl: input.productUrl,
-      quantity: input.quantity,
+
+      ...(input.preferredBrand ? { preferredBrand: input.preferredBrand } : {}),
+
+      ...(input.productUrl ? { productUrl: input.productUrl } : {}),
+
+      ...(input.quantity ? { quantity: input.quantity } : {}),
     },
-    budget: input.budget,
-    shippingPreference: input.shippingPreference,
-    desiredDeliveryDate: input.desiredDeliveryDate,
-    notes: input.notes,
+
+    ...(input.budget ? { budget: input.budget } : {}),
+
+    ...(input.shippingPreference
+      ? { shippingPreference: input.shippingPreference }
+      : {}),
+
+    ...(input.desiredDeliveryDate
+      ? { desiredDeliveryDate: input.desiredDeliveryDate }
+      : {}),
+
+    ...(input.notes ? { notes: input.notes } : {}),
+
     consent: input.consent,
     source: input.source,
     status: 'request_received',
   });
+
   await RequestStatusHistoryModel.create({
     referenceId,
     toStatus: 'request_received',
@@ -57,7 +74,6 @@ export async function createProductRequest(input: CreateProductRequest) {
 
   return request;
 }
-
 export async function getProductRequest(referenceId: string) {
   const request = await ProductRequestModel.findOne({ referenceId }).lean();
   if (!request) return null;

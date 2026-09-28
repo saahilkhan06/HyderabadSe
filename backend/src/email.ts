@@ -211,7 +211,7 @@ export async function sendCustomerRequestConfirmationEmail(
   const from = getEmailFrom();
   const notificationEmail = getNotificationEmail();
 
-  const subject = `HyderabadSe India request received — ${data.referenceId}`;
+  const subject = `HyderabadSe  request received — ${data.referenceId}`;
 
   const result = await mailer.emails.send({
     from,
@@ -226,7 +226,7 @@ export async function sendCustomerRequestConfirmationEmail(
           <div style="background:#102a43;padding:24px 28px;color:#ffffff;">
 
             <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#e4be70;font-weight:700;">
-              HyderabadSe India
+              HyderabadSe 
             </div>
 
             <h1 style="margin:8px 0 0;font-size:25px;">
@@ -265,7 +265,7 @@ export async function sendCustomerRequestConfirmationEmail(
 
             <p style="margin-top:24px;line-height:1.7;">
               Aapki seva mein,<br />
-              <strong>HyderabadSe India</strong>
+              <strong>HyderabadSe </strong>
             </p>
 
           </div>
@@ -284,7 +284,7 @@ export async function sendCustomerRequestConfirmationEmail(
       "Submitting a request does not confirm an order.",
       "",
       "Aapki seva mein,",
-      "HyderabadSe India",
+      "HyderabadSe ",
     ].join("\n"),
   });
 
@@ -403,7 +403,7 @@ export async function sendCustomerVoiceEnquiryConfirmationEmail(
           <div style="background:#102a43;padding:24px 28px;color:#ffffff;">
 
             <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#e4be70;font-weight:700;">
-              HyderabadSe India
+              HyderabadSe 
             </div>
 
             <h1 style="margin:8px 0 0;font-size:25px;">
@@ -445,7 +445,7 @@ export async function sendCustomerVoiceEnquiryConfirmationEmail(
 
             <p style="margin-top:24px;line-height:1.7;">
               Aapki seva mein,<br />
-              <strong>HyderabadSe India</strong>
+              <strong>HyderabadSe </strong>
             </p>
 
           </div>
@@ -468,7 +468,7 @@ export async function sendCustomerVoiceEnquiryConfirmationEmail(
       "Please keep your reference ID for future communication.",
       "",
       "Aapki seva mein,",
-      "HyderabadSe India",
+      "HyderabadSe ",
     ].join("\n"),
   });
 

@@ -25,14 +25,14 @@ const ProductRequestSchema = new Schema(
 
     destination: {
       country: { type: String, required: true, trim: true },
-      city: { type: String, required: true, trim: true },
+      city: { type: String, trim: true },
     },
 
     product: {
       name: { type: String, required: true, trim: true },
       preferredBrand: { type: String, trim: true },
       productUrl: { type: String, trim: true },
-      quantity: { type: String, required: true, trim: true },
+      quantity: { type: String, trim: true },
     },
 
     budget: { type: String, trim: true },
@@ -40,7 +40,6 @@ const ProductRequestSchema = new Schema(
     shippingPreference: {
       type: String,
       enum: ['economy', 'express', 'not_sure'],
-      required: true,
     },
 
     desiredDeliveryDate: { type: String, trim: true },
@@ -71,4 +70,7 @@ ProductRequestSchema.index({ status: 1, createdAt: -1 });
 ProductRequestSchema.index({ source: 1, createdAt: -1 });
 
 export type ProductRequest = InferSchemaType<typeof ProductRequestSchema>;
-export const ProductRequestModel = model('ProductRequest', ProductRequestSchema);
+export const ProductRequestModel = model(
+  'ProductRequest',
+  ProductRequestSchema,
+);

@@ -47,7 +47,7 @@ async function startServer() {
 
   app.get("/health", async () => ({
     ok: true,
-    service: "gharse-india-api",
+    service: "gharse--api",
     database: "mongodb",
   }));
 
@@ -80,7 +80,7 @@ async function startServer() {
     });
 
     console.log(
-      `HyderabadSe India API running on http://localhost:${config.PORT}`,
+      `HyderabadSe  API running on http://localhost:${config.PORT}`,
     );
   } catch (error) {
     app.log.error(error);
