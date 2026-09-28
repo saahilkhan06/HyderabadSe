@@ -414,6 +414,25 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      {/* =========================================================
+          REQUEST FORM
+      ========================================================= */}
+      <section id="request" className="shell scroll-mt-24 pb-16 lg:pb-24">
+        <div className="mb-8 max-w-2xl">
+          <p className="eyebrow">Request a product</p>
+
+          <h2 className="section-title mt-3">
+            Can’t find what you need? Ask us.
+          </h2>
+
+          <p className="mt-4 text-sm leading-6 text-ink/60">
+            Send a product name, photograph, link, brand, or shop name. We’ll
+            investigate the request and let you know what is possible.
+          </p>
+        </div>
+
+        <RequestForm />
+      </section>
 
       {/* =========================================================
           PERSON IN INDIA
@@ -749,26 +768,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* =========================================================
-          REQUEST FORM
-      ========================================================= */}
-      <section id="request" className="shell scroll-mt-24 pb-16 lg:pb-24">
-        <div className="mb-8 max-w-2xl">
-          <p className="eyebrow">Request a product</p>
-
-          <h2 className="section-title mt-3">
-            Can’t find what you need? Ask us.
-          </h2>
-
-          <p className="mt-4 text-sm leading-6 text-ink/60">
-            Send a product name, photograph, link, brand, or shop name. We’ll
-            investigate the request and let you know what is possible.
-          </p>
-        </div>
-
-        <RequestForm />
       </section>
 
       {/* =========================================================
