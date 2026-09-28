@@ -17,7 +17,8 @@ type SpeechRecognitionLike = {
   onerror: ((event: { error: string }) => void) | null;
 };
 
-type SpeechRecognitionConstructor = new () => SpeechRecognitionLike;
+type SpeechRecognitionConstructor =
+  new () => SpeechRecognitionLike;
 
 declare global {
   interface Window {
@@ -27,7 +28,8 @@ declare global {
 }
 
 const API_URL = (
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:4000"
 ).replace(/\/$/, "");
 
 const SILENCE_DELAY = 3000;
@@ -35,7 +37,10 @@ const SILENCE_DELAY = 3000;
 export default function VoiceEnquiry() {
   const [isListening, setIsListening] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [transcript, setTranscript] = useState("");
+  const [email, setEmail] = useState("");
+
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -45,6 +50,8 @@ export default function VoiceEnquiry() {
   const transcriptRef = useRef("");
   const listeningRef = useRef(false);
   const submittingRef = useRef(false);
+
+  const emailRef = useRef("");
 
   const silenceTimerRef =
     useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -73,14 +80,36 @@ export default function VoiceEnquiry() {
       const finalTranscript =
         transcriptRef.current.trim();
 
-      if (!finalTranscript || submittingRef.current) {
+      const customerEmail =
+        emailRef.current.trim();
+
+      if (!finalTranscript) {
+        setError("Please speak your enquiry first.");
         return;
       }
 
-      shouldRestartRef.current = false;
+      if (!customerEmail) {
+        setError(
+          "Please enter your email address before sending.",
+        );
+        return;
+      }
 
-      setIsListening(false);
-      listeningRef.current = false;
+      const emailIsValid =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+          customerEmail,
+        );
+
+      if (!emailIsValid) {
+        setError(
+          "Please enter a valid email address.",
+        );
+        return;
+      }
+
+      if (submittingRef.current) {
+        return;
+      }
 
       setIsSubmitting(true);
       submittingRef.current = true;
@@ -98,6 +127,7 @@ export default function VoiceEnquiry() {
             },
             body: JSON.stringify({
               transcript: finalTranscript,
+              email: customerEmail,
               source: "voice",
             }),
           },
@@ -121,17 +151,23 @@ export default function VoiceEnquiry() {
         }
 
         setSuccess(
-          data.message || "Your enquiry has been sent.",
+          data.message ||
+            "Your enquiry has been sent successfully.",
         );
 
         clearSuccessTimer();
 
-        successTimerRef.current = setTimeout(() => {
-          setSuccess("");
-          setTranscript("");
+        successTimerRef.current =
+          setTimeout(() => {
+            setSuccess("");
+            setTranscript("");
+            transcriptRef.current = "";
 
-          transcriptRef.current = "";
-        }, 3000);
+            setEmail("");
+            emailRef.current = "";
+
+            setError("");
+          }, 4000);
       } catch (error) {
         console.error(
           "Voice enquiry submission failed:",
@@ -150,26 +186,36 @@ export default function VoiceEnquiry() {
     };
 
     const startRecognition = () => {
-      const recognition = recognitionRef.current;
+      const recognition =
+        recognitionRef.current;
 
-      if (!recognition || submittingRef.current) {
+      if (
+        !recognition ||
+        submittingRef.current
+      ) {
         return;
       }
 
       try {
         recognition.start();
       } catch {
-        // Chrome throws if recognition is already running.
-        // We can safely ignore that case.
+        // Chrome can throw if recognition is already running.
+        // Safe to ignore.
       }
     };
 
-    const scheduleSubmission = () => {
+    const stopListeningAfterSilence = () => {
       clearSilenceTimer();
 
-      silenceTimerRef.current = setTimeout(() => {
-        submitVoiceEnquiry();
-      }, SILENCE_DELAY);
+      silenceTimerRef.current =
+        setTimeout(() => {
+          shouldRestartRef.current = false;
+          listeningRef.current = false;
+
+          setIsListening(false);
+
+          recognitionRef.current?.stop();
+        }, SILENCE_DELAY);
     };
 
     const startVoiceEnquiry = () => {
@@ -197,24 +243,20 @@ export default function VoiceEnquiry() {
       setError("");
       setSuccess("");
       setTranscript("");
+      setEmail("");
 
       transcriptRef.current = "";
+      emailRef.current = "";
 
       shouldRestartRef.current = true;
       listeningRef.current = true;
 
       setIsListening(true);
 
-      const recognition = new SpeechRecognition();
+      const recognition =
+        new SpeechRecognition();
 
       recognition.lang = "en-IN";
-
-      /*
-       * Keep recognition running for as long as possible.
-       * Chrome may still end recognition after silence,
-       * so onend below restarts it while our 3-second
-       * silence timer is active.
-       */
       recognition.continuous = true;
       recognition.interimResults = true;
 
@@ -226,7 +268,8 @@ export default function VoiceEnquiry() {
           i < event.results.length;
           i++
         ) {
-          text += event.results[i][0].transcript;
+          text +=
+            event.results[i][0].transcript;
         }
 
         const finalText = text.trim();
@@ -239,19 +282,12 @@ export default function VoiceEnquiry() {
 
         setTranscript(finalText);
 
-        /*
-         * Every time the user speaks, reset the
-         * 3-second silence countdown.
-         */
-        scheduleSubmission();
+        // Reset the 3-second silence countdown
+        // every time the user speaks.
+        stopListeningAfterSilence();
       };
 
       recognition.onerror = (event) => {
-        /*
-         * "no-speech" can happen when the browser
-         * temporarily stops listening. We don't want
-         * that to immediately submit the enquiry.
-         */
         if (event.error === "no-speech") {
           if (
             listeningRef.current &&
@@ -287,12 +323,6 @@ export default function VoiceEnquiry() {
       };
 
       recognition.onend = () => {
-        /*
-         * If the user has not finished speaking, Chrome may
-         * end the recognition session after a short pause.
-         *
-         * Restart it so the user can continue speaking.
-         */
         if (
           listeningRef.current &&
           shouldRestartRef.current &&
@@ -310,12 +340,6 @@ export default function VoiceEnquiry() {
 
           return;
         }
-
-        /*
-         * Recognition has genuinely finished.
-         * The actual submission is controlled by the
-         * 3-second silence timer.
-         */
       };
 
       recognitionRef.current = recognition;
@@ -344,6 +368,13 @@ export default function VoiceEnquiry() {
       startVoiceEnquiry,
     );
 
+    // Store submit function so the button can call it.
+    (
+      window as Window & {
+        hyderabadseSubmitVoiceEnquiry?: () => void;
+      }
+    ).hyderabadseSubmitVoiceEnquiry = submitVoiceEnquiry;
+
     return () => {
       window.removeEventListener(
         "hyderabadse-start-voice",
@@ -358,8 +389,25 @@ export default function VoiceEnquiry() {
 
       recognitionRef.current?.stop();
       recognitionRef.current = null;
+
+      delete (
+        window as Window & {
+          hyderabadseSubmitVoiceEnquiry?: () => void;
+        }
+      ).hyderabadseSubmitVoiceEnquiry;
     };
   }, []);
+
+  const handleSend = () => {
+    const submit =
+      (
+        window as Window & {
+          hyderabadseSubmitVoiceEnquiry?: () => void;
+        }
+      ).hyderabadseSubmitVoiceEnquiry;
+
+    submit?.();
+  };
 
   return (
     <div className="fixed bottom-6 left-1/2 z-[100] w-[min(90vw,600px)] -translate-x-1/2">
@@ -369,6 +417,7 @@ export default function VoiceEnquiry() {
         error ||
         success) && (
         <div className="rounded-2xl border border-ink/10 bg-white p-5 shadow-xl">
+
           {isListening && (
             <p className="mb-3 text-sm font-medium text-orange-500">
               Listening...
@@ -382,9 +431,59 @@ export default function VoiceEnquiry() {
           )}
 
           {transcript && (
-            <p className="text-base leading-relaxed text-ink">
-              {transcript}
-            </p>
+            <div>
+              <p className="text-base leading-relaxed text-ink">
+                {transcript}
+              </p>
+            </div>
+          )}
+
+          {transcript && !success && (
+            <div className="mt-4">
+              <label
+                htmlFor="voice-enquiry-email"
+                className="mb-2 block text-sm font-medium text-ink"
+              >
+                Your email address
+              </label>
+
+              <input
+                id="voice-enquiry-email"
+                type="email"
+                value={email}
+                onChange={(event) => {
+                  const value =
+                    event.target.value;
+
+                  setEmail(value);
+                  emailRef.current = value;
+
+                  if (error) {
+                    setError("");
+                  }
+                }}
+                placeholder="you@example.com"
+                autoComplete="email"
+                disabled={isSubmitting}
+                className="w-full rounded-xl border border-ink/15 px-4 py-3 text-sm outline-none transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/10 disabled:opacity-60"
+              />
+
+              <p className="mt-2 text-xs text-slate-500">
+                We'll send your enquiry confirmation
+                to this email address.
+              </p>
+
+              <button
+                type="button"
+                onClick={handleSend}
+                disabled={isSubmitting}
+                className="mt-4 w-full rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {isSubmitting
+                  ? "Sending..."
+                  : "Send enquiry"}
+              </button>
+            </div>
           )}
 
           {success && (
