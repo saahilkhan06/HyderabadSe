@@ -11,7 +11,7 @@ export type ProductRequestEmailData = {
   productName: string;
   preferredBrand?: string;
   productUrl?: string;
-  quantity: string;
+  quantity?: string;
   budget?: string;
   shippingPreference?: string;
   desiredDeliveryDate?: string;
