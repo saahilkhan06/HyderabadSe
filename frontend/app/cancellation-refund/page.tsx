@@ -266,7 +266,7 @@ export default function CancellationRefundPage() {
 
                   <p>
                     This policy exists because HyderabadSe may purchase
-                    products specifically according to the customer's confirmed
+                    products specifically according to the customer&apos;s confirmed
                     requirements. Once that purchase has been made, we may no
                     longer be able to recover the amount paid to the seller or
                     supplier.
@@ -321,7 +321,7 @@ export default function CancellationRefundPage() {
                   <p>
                     Tracking availability and frequency of updates depend on
                     the shipping carrier and logistics provider. HyderabadSe
-                    does not control the carrier's scanning schedule or
+                    does not control the carrier&apos;s scanning schedule or
                     delivery network.
                   </p>
                 </div>
@@ -336,7 +336,7 @@ export default function CancellationRefundPage() {
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
                     HyderabadSe may source products from different sellers,
-                    stores, suppliers or marketplaces based on the customer's
+                    stores, suppliers or marketplaces based on the customer&apos;s
                     requirements. In many cases, the product is purchased
                     specifically because the customer has requested and
                     confirmed it.
@@ -373,7 +373,7 @@ export default function CancellationRefundPage() {
 
                   <p>
                     Any exception to this policy will be considered at
-                    HyderabadSe's discretion and does not create a general
+                    HyderabadSe&apos;s discretion and does not create a general
                     entitlement to a refund.
                   </p>
                 </div>

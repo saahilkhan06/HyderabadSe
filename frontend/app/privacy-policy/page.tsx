@@ -360,7 +360,7 @@ export default function PrivacyPolicyPage() {
                   </p>
 
                   <p>
-                    Customers should review the relevant payment provider's
+                    Customers should review the relevant payment provider&apos;s
                     information before completing a payment where applicable.
                   </p>
                 </div>
@@ -469,12 +469,12 @@ export default function PrivacyPolicyPage() {
               {/* Children */}
               <section>
                 <h2 className="text-2xl font-semibold">
-                  10. Children's privacy
+                  10. Children&apos;s privacy
                 </h2>
 
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
-                    HyderabadSe's services are intended for general customers
+                    HyderabadSe&apos;s services are intended for general customers
                     and are not specifically directed toward children.
                   </p>
 
