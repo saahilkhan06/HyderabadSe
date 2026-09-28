@@ -448,7 +448,7 @@ export default function HomePage() {
               </h2>
 
               <p className="mt-5 max-w-xl text-sm leading-6 text-ink/60">
-                Need something from India? Send us the name, photo, link, or
+                Need something from India? Send us the name,details, photo, link, or
                 shop. We’ll check where to find it, what it costs, and whether
                 it can be shipped to you.
               </p>
