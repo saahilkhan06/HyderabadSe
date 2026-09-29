@@ -168,7 +168,7 @@ function BrandLogo({ name, domain }: { name: string; domain: string }) {
   // const logo = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
   // const logo = `https://logos.hunter.io/${domain}`;
   // const logo = `https://logo.debounce.com/${domain}`;
-  const logo = `https://img.logo.dev/${domain}?token=${process.env.NEXT_PUBLIC_LOGO_DEV_KEY}`;
+  const logo = `https://img.logo.dev/${domain}?token=${process.env.LOGO_DEV_KEY}`;
   return (
     <div
       className="grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-sm"
