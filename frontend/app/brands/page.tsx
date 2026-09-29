@@ -33,13 +33,13 @@ const categories: BrandCategory[] = [
       { name: "Haldiram's", domain: "haldirams.com" },
       { name: "Bikaji", domain: "bikaji.com" },
       { name: "Bikanervala", domain: "bikanervala.com" },
-      { name: "Almond House", domain: "almondhouse.in" },
+      { name: "pista House", domain: "pistahouse.in" },
       { name: "Dadu's", domain: "dadus.co.in" },
-      { name: "G. Pulla Reddy", domain: "pullareddy.com" },
+      { name: "G. Pulla Reddy", domain: "gpullareddysweets.com" },
       { name: "Anand Sweets", domain: "anandsweets.in" },
       { name: "K.C. Das", domain: "kcdas.com" },
       { name: "Sri Krishna Sweets", domain: "srikrishnasweets.com" },
-      { name: "A2B", domain: "a2b.co.in" },
+      { name: "Almond House", domain: "almondhouse.com" },
     ],
   },
 
@@ -51,15 +51,15 @@ const categories: BrandCategory[] = [
       "Biscuits, rusks, cookies and bakery favourites — with packaged and shelf-stable options prioritised for sourcing review.",
     brands: [
       { name: "Karachi Bakery", domain: "karachibakery.com" },
-      { name: "Subhan Bakery", domain: "subhanbakery.com" },
+      { name: "Subhan Bakery", domain: "subhanbakery.in" },
       { name: "Café Niloufer", domain: "niloufercafe.com" },
-      { name: "Britannia", domain: "britannia.co.in" },
+      { name: "Pista House", domain: "pistahouse.in" },
       { name: "Theobroma", domain: "theobroma.in" },
       { name: "Monginis", domain: "monginis.net" },
       { name: "English Oven", domain: "englishoven.com" },
       { name: "Harvest Gold", domain: "harvestgold.in" },
-      { name: "Modern Foods", domain: "modernfoods.co.in" },
-      { name: "A2B Bakery", domain: "a2b.co.in" },
+      { name: "Bakelore", domain: "bakelore.com" },
+      { name: "Sunfeast", domain: "sunfeastworld.com" },
     ],
   },
 
@@ -71,15 +71,15 @@ const categories: BrandCategory[] = [
       "Kurtas, ethnic wear, festive outfits and everyday Indian fashion from recognisable Indian labels.",
     brands: [
       { name: "Fabindia", domain: "fabindia.com" },
-      { name: "BIBA", domain: "biba.in" },
+      { name: "H&M", domain: "www2.hm.com" },
       { name: "Manyavar", domain: "manyavar.com" },
       { name: "Soch", domain: "soch.com" },
       { name: "W for Woman", domain: "wforwoman.com" },
-      { name: "Aurelia", domain: "aurelia.in" },
+      { name: "Taruni", domain: "taruni.in" },
       { name: "Libas", domain: "libas.in" },
       { name: "Neeru's", domain: "neerus.com" },
       { name: "Tasva", domain: "tasva.com" },
-      { name: "Rangriti", domain: "rangriti.com" },
+      { name: "BIBA", domain: "biba.in" },
     ],
   },
 
@@ -96,8 +96,8 @@ const categories: BrandCategory[] = [
       { name: "Too Yumm!", domain: "tooyumm.com" },
       { name: "Bikanervala", domain: "bikanervala.com" },
       { name: "Chheda's", domain: "chhedas.com" },
-      { name: "Prabhuji", domain: "prabhuji.com" },
-      { name: "Garden", domain: "gardenfood.com" },
+      { name: "Prabhuji", domain: "prabhujipurefood.com" },
+      { name: "Doritos", domain: "doritos.com" },
       { name: "Yellow Diamond", domain: "yellowdiamond.in" },
       { name: "Bingo!", domain: "bingosnacks.com" },
     ],
@@ -134,12 +134,12 @@ const categories: BrandCategory[] = [
       { name: "Priya Foods", domain: "priyafoods.com" },
       { name: "Aachi", domain: "aachifoods.com" },
       { name: "Nilon's", domain: "nilons.com" },
-      { name: "Pachranga", domain: "pachranga.com" },
+      { name: "Pachranga", domain: "pachrangapickles.co.in" },
       { name: "MTR Foods", domain: "mtrfoods.com" },
       { name: "Tops", domain: "topsfoods.com" },
-      { name: "Bedekar", domain: "bedekarfoods.com" },
-      { name: "Pravin", domain: "pravinmasala.com" },
-      { name: "A2B", domain: "a2b.co.in" },
+      { name: "Bedekar", domain: "vpbedekar.com" },
+      { name: "Grillo's", domain: "grillos.com" },
+      { name: "Sitara", domain: "sitarafoods.com" },
     ],
   },
 
@@ -154,42 +154,21 @@ const categories: BrandCategory[] = [
       { name: "Wagh Bakri", domain: "waghbakritea.com" },
       { name: "Brooke Bond Red Label", domain: "hul.co.in" },
       { name: "Society Tea", domain: "societytea.com" },
-      { name: "Girnar", domain: "girnar.com" },
+      { name: "Lipton", domain: "lipton.com" },
       { name: "Bru", domain: "hul.co.in" },
       { name: "Cothas Coffee", domain: "cothas.com" },
       { name: "Niloufer", domain: "niloufercafe.com" },
       { name: "3 Roses", domain: "hul.co.in" },
-      { name: "Tata Coffee", domain: "tatacoffee.com" },
-    ],
-  },
-
-  {
-    id: "home-gifts",
-    eyebrow: "08 · Gifts & home",
-    title: "Popular Indian gifts, crafts & home brands",
-    description:
-      "Handcrafted pieces, textiles, décor and giftable Indian products that can add a little home to a Gulf address.",
-    brands: [
-      { name: "Fabindia", domain: "fabindia.com" },
-      { name: "Jaypore", domain: "jaypore.com" },
-      { name: "Chumbak", domain: "chumbak.com" },
-      { name: "Okhai", domain: "okhai.org" },
-      { name: "iTokri", domain: "itokri.com" },
-      { name: "Tribes India", domain: "tribesindia.com" },
-      { name: "Anokhi", domain: "anokhi.com" },
-      {
-        name: "The India Craft House",
-        domain: "theindiacrafthouse.com",
-      },
-      { name: "Dastkari Haat", domain: "dastkarihaat.org" },
-      { name: "Kilmora", domain: "kilmora.com" },
+      { name: "Girnar", domain: "girnar.com" },
     ],
   },
 ];
 
 function BrandLogo({ name, domain }: { name: string; domain: string }) {
-  const logo = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
-
+  // const logo = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+  // const logo = `https://logos.hunter.io/${domain}`;
+  // const logo = `https://logo.debounce.com/${domain}`;
+  const logo = `https://img.logo.dev/${domain}?token=${process.env.NEXT_PUBLIC_LOGO_DEV_KEY}`;
   return (
     <div
       className="grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-sm"
