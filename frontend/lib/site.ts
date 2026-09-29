@@ -13,8 +13,8 @@ export const siteConfig = {
 } as const;
 
 export const destinations = [
-  { country: "UAE", status: "Pilot", tone: "active" as const },
-  { country: "Saudi Arabia", status: "Coming soon", tone: "planned" as const },
+  { country: "UAE", status: "Active", tone: "active" as const },
+  { country: "Saudi Arabia", status: "Active", tone: "active" as const },
   { country: "Qatar", status: "Coming soon", tone: "planned" as const },
   { country: "Kuwait", status: "Coming soon", tone: "planned" as const },
   { country: "Oman", status: "Coming soon", tone: "planned" as const },

@@ -13,6 +13,8 @@ import {
   Sparkles,
   Truck,
   UserRound,
+  MailOpen,
+  ShoppingCart,
 } from "lucide-react";
 
 import { CategoryIcon } from "@/components/Icon";
@@ -83,7 +85,7 @@ export default function HomePage() {
             </span>
 
             <span>
-              <span className="block truncate font-display text-[22px] leading-none sm:text-[26px] lg:text-[30px]">
+              <span className="block  font-display text-[22px] leading-none sm:text-[26px] lg:text-[34px]">
                 HyderabadSe
               </span>
 
@@ -215,13 +217,15 @@ export default function HomePage() {
 
           <div className="mt-7 flex flex-col md:gap-8 gap-3 sm:flex-row">
             <Link href="#request" className="button-primary">
+              <ShoppingCart />
               Request a product
             </Link>
             <Link
               href="mailto:hyderabadseorder@gmail.com"
               className="button-enquire"
             >
-              Enquire Now
+              <MailOpen />
+              Enquire Here for more info
             </Link>
 
             {/* <VoiceEnquiryButton /> */}
@@ -366,73 +370,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* =========================================================
-          PRODUCTS
-      ========================================================= */}
-      <section id="products" className="shell py-16 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-[.65fr_1.35fr] lg:items-end">
-          <div>
-            <p className="eyebrow">What we can source</p>
+      {/* ======================= */}
 
-            <h2 className="section-title mt-3">
-              From everyday essentials to special finds.
-            </h2>
-          </div>
-
-          <p className="max-w-2xl text-sm leading-6 text-ink/60">
-            Request products from Hyderabad or other parts of India. We review
-            every request individually before confirming whether it can be
-            sourced and shipped.
-          </p>
-        </div>
-
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {categories.map((category, index) => (
-            <article
-              key={category.title}
-              className="group relative overflow-hidden rounded-2xl border border-ink/10 bg-white transition duration-300 hover:-translate-y-1"
-            >
-              {/* Background image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
-                style={{ backgroundImage: `url(${category.image})` }}
-              />
-
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-cream/40 transition duration-200 group-hover:bg-cream/20" />
-
-              {/* Content */}
-              <div className="relative p-5">
-                <div className="flex items-start justify-between">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-white">
-                    <CategoryIcon name={category.icon} />
-                  </span>
-
-                  <span className="text-[10px] font-bold uppercase tracking-[.15em] text-ink/35">
-                    0{index + 1}
-                  </span>
-                </div>
-
-                <h3 className="mt-6 text-lg font-bold tracking-tight">
-                  {category.title}
-                </h3>
-
-                <p className="mt-2 min-h-[72px] text-base font-semibold">
-                  {category.copy}
-                </p>
-
-                <Link
-                  href="#request"
-                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-black"
-                >
-                  Request this category
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
       <section className="shell py-16 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-[.65fr_1.35fr] lg:items-end">
           <div>
@@ -555,6 +494,74 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      {/* =========================================================
+          PRODUCTS
+      ========================================================= */}
+      <section id="products" className="shell py-3 lg:py-5">
+        <div className="grid gap-8 lg:grid-cols-[.65fr_1.35fr] lg:items-end">
+          <div>
+            <p className="eyebrow">What we can source</p>
+
+            <h2 className="section-title mt-3">
+              From everyday essentials to special finds.
+            </h2>
+          </div>
+
+          <p className="max-w-2xl text-sm leading-6 text-ink/60">
+            Request products from Hyderabad or other parts of India. We review
+            every request individually before confirming whether it can be
+            sourced and shipped.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {categories.map((category, index) => (
+            <article
+              key={category.title}
+              className="group relative overflow-hidden rounded-2xl border border-ink/10 bg-white transition duration-300 hover:-translate-y-1"
+            >
+              {/* Background image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-105"
+                style={{ backgroundImage: `url(${category.image})` }}
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-cream/40 transition duration-200 group-hover:bg-cream/20" />
+
+              {/* Content */}
+              <div className="relative p-5">
+                <div className="flex items-start justify-between">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-white">
+                    <CategoryIcon name={category.icon} />
+                  </span>
+
+                  <span className="text-[10px] font-bold uppercase tracking-[.15em] text-ink/35">
+                    0{index + 1}
+                  </span>
+                </div>
+
+                <h3 className="mt-6 text-lg font-bold tracking-tight">
+                  {category.title}
+                </h3>
+
+                <p className="mt-2 min-h-[72px] text-base font-semibold">
+                  {category.copy}
+                </p>
+
+                <Link
+                  href="#request"
+                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-black"
+                >
+                  Request this category
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+      {/* ======================================== */}
 
       {/* =========================================================
           REQUEST FORM
@@ -730,7 +737,7 @@ export default function HomePage() {
       {/* =========================================================
           AFFORDABILITY
       ========================================================= */}
-      <section className="shell py-16 lg:py-20">
+      {/* <section className="shell py-16 lg:py-20">
         <div className="grid gap-5 lg:grid-cols-[.8fr_1.2fr]">
           <div className="card bg-[#e8ddce] p-7 sm:p-9">
             <p className="eyebrow">Affordability, honestly framed</p>
@@ -767,7 +774,7 @@ export default function HomePage() {
 
           <QuoteCard />
         </div>
-      </section>
+      </section> */}
 
       {/* =========================================================
           TRUST
@@ -950,7 +957,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
 
       {/* =========================================================
           FOOTER
@@ -1057,7 +1064,7 @@ function RouteVisual() {
           </div>
 
           <span className="rounded-full bg-white/70 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.14em] text-ink/55">
-            Pilot: UAE
+            Pilot: UAE,Saudi Arabia
           </span>
         </div>
 
@@ -1085,7 +1092,7 @@ function RouteVisual() {
           </span>
 
           <span className="absolute right-[3%] top-[52%] text-[10px] font-bold sm:right-[5%] sm:text-xs">
-            Dubai
+            Dubai , Saudi Arabia
           </span>
 
           {/* Request */}

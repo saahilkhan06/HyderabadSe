@@ -324,7 +324,7 @@ export function RequestForm() {
 
   return (
     <form onSubmit={onSubmit} className="card p-5 sm:p-7" noValidate>
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-3">
         {/* REQUIRED */}
 
         <Field label="Full name" required>
@@ -446,22 +446,8 @@ export function RequestForm() {
           />
         </Field>
 
-        {/* Budget can be enabled later if needed. */}
-        {/*
-        <Field label="Budget">
-          <input
-            id="budget"
-            aria-label="Budget"
-            className="field"
-            value={form.budget ?? ""}
-            onChange={(e) => set("budget", e.target.value)}
-            placeholder="Currency + amount"
-          />
-        </Field>
-        */}
-
         {/* Delivery preference can be enabled later if needed. */}
-        {/*
+
         <Field label="Delivery preference">
           <select
             id="shippingPreference"
@@ -475,12 +461,10 @@ export function RequestForm() {
               )
             }
           >
-            <option value="economy">Economy if available</option>
-            <option value="express">Express if available</option>
-            <option value="not_sure">Not sure</option>
+            <option value="economy">Economy shipping / 6-7 working days</option>
+            <option value="express">Express shipping / 2-3 working days</option>
           </select>
         </Field>
-        */}
 
         {/* Desired delivery date can be enabled later if needed. */}
         {/*
@@ -502,7 +486,7 @@ export function RequestForm() {
           <textarea
             id="notes"
             aria-label="Additional notes"
-            className="field min-h-32 resize-y py-3"
+            className="field min-h-24 resize-y py-3"
             value={form.notes ?? ""}
             onChange={(e) => set("notes", e.target.value)}
             placeholder="Medium size, less spicy, specific colour, preferred shop, or any other details..."
