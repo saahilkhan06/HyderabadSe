@@ -423,7 +423,7 @@ export default function HomePage() {
 
                 <Link
                   href="#request"
-                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-terracotta"
+                  className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-black"
                 >
                   Request this category
                   <ArrowRight size={14} />
