@@ -212,9 +212,12 @@ export default function HomePage() {
             requirements before giving you a clear quotation.
           </p>
 
-          <div className="mt-7 flex flex-col gap-8 sm:flex-row">
+          <div className="mt-7 flex flex-col md:gap-8 gap-3 sm:flex-row">
             <Link href="#request" className="button-primary">
               Request a product
+            </Link>
+            <Link href="mailto:hyderabadseorder@gmail.com" className="button-enquire">
+              Enquire Now
             </Link>
 
             {/* <VoiceEnquiryButton /> */}
