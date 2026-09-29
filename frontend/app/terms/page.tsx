@@ -1,3 +1,5 @@
+import BackToHyderabadse from "@/components/BackToHyderabadse";
+import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,6 +11,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <main className="bg-cream text-ink">
+      <BackToHyderabadse/>
       <section className="shell py-6 lg:py-10">
         <div className="grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-16">
           {/* Side navigation */}
@@ -301,6 +304,7 @@ export default function TermsPage() {
           </div>
         </div>
       </section>
+      <Footer/>
     </main>
   );
 }

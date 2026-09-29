@@ -1,3 +1,6 @@
+import BackToHyderabadse from "@/components/BackToHyderabadse";
+import Footer from "@/components/Footer";
+
 export const metadata = {
   title: "Cancellation & Refund Policy | HyderabadSe India",
   description:
@@ -7,6 +10,7 @@ export const metadata = {
 export default function CancellationRefundPage() {
   return (
     <main className="bg-cream text-ink">
+      <BackToHyderabadse />
       {/* Hero */}
       <section className="border-b border-ink/10 bg-[#f7f2e9]">
         <div className="shell py-8 lg:py-15">
@@ -21,9 +25,9 @@ export default function CancellationRefundPage() {
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
               We believe every order should be handled with clarity,
-              confirmation and transparency. This policy explains when you
-              can cancel a request, when a refund is available, and what
-              happens once a product has been purchased on your behalf.
+              confirmation and transparency. This policy explains when you can
+              cancel a request, when a refund is available, and what happens
+              once a product has been purchased on your behalf.
             </p>
 
             <p className="mt-5 text-sm text-slate-500">
@@ -125,8 +129,7 @@ export default function CancellationRefundPage() {
                   <p>
                     When you submit a product request through HyderabadSe, the
                     request is first reviewed by our team. A request or enquiry
-                    does not by itself constitute a purchase or confirmed
-                    order.
+                    does not by itself constitute a purchase or confirmed order.
                   </p>
 
                   <p>
@@ -158,14 +161,14 @@ export default function CancellationRefundPage() {
 
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
-                    You may request cancellation at any time before
-                    HyderabadSe has purchased the product on your behalf.
+                    You may request cancellation at any time before HyderabadSe
+                    has purchased the product on your behalf.
                   </p>
 
                   <p>
-                    If your order has been confirmed but the product has not
-                    yet been purchased, you may still request cancellation and
-                    a refund, subject to the conditions described below.
+                    If your order has been confirmed but the product has not yet
+                    been purchased, you may still request cancellation and a
+                    refund, subject to the conditions described below.
                   </p>
 
                   <p>
@@ -175,9 +178,7 @@ export default function CancellationRefundPage() {
                   </p>
 
                   <div className="rounded-2xl border border-ink/10 bg-white p-6 shadow-sm">
-                    <h3 className="font-semibold text-ink">
-                      Simple rule
-                    </h3>
+                    <h3 className="font-semibold text-ink">Simple rule</h3>
 
                     <p className="mt-3 leading-7 text-slate-600">
                       <strong className="text-ink">
@@ -199,20 +200,18 @@ export default function CancellationRefundPage() {
 
               {/* Refund */}
               <section id="refund">
-                <h2 className="text-2xl font-semibold">
-                  3. Refund policy
-                </h2>
+                <h2 className="text-2xl font-semibold">3. Refund policy</h2>
 
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
-                    A refund is available when you cancel before HyderabadSe
-                    has purchased the product on your behalf.
+                    A refund is available when you cancel before HyderabadSe has
+                    purchased the product on your behalf.
                   </p>
 
                   <p>
-                    If you have confirmed an order but we have not yet
-                    purchased the product, you can contact us to request
-                    cancellation and a refund.
+                    If you have confirmed an order but we have not yet purchased
+                    the product, you can contact us to request cancellation and
+                    a refund.
                   </p>
 
                   <p>
@@ -223,9 +222,9 @@ export default function CancellationRefundPage() {
                   </p>
 
                   <p>
-                    This applies even if the product is subsequently in
-                    transit, awaiting delivery, delayed in shipping, or
-                    otherwise being processed after purchase.
+                    This applies even if the product is subsequently in transit,
+                    awaiting delivery, delayed in shipping, or otherwise being
+                    processed after purchase.
                   </p>
 
                   <h3 className="pt-4 text-lg font-semibold text-ink">
@@ -259,23 +258,21 @@ export default function CancellationRefundPage() {
                   </p>
 
                   <p>
-                    From that point onward, cancellation and refund requests
-                    are generally not accepted because the product has already
-                    been purchased specifically for you.
+                    From that point onward, cancellation and refund requests are
+                    generally not accepted because the product has already been
+                    purchased specifically for you.
                   </p>
 
                   <p>
-                    This policy exists because HyderabadSe may purchase
-                    products specifically according to the customer&apos;s confirmed
+                    This policy exists because HyderabadSe may purchase products
+                    specifically according to the customer&apos;s confirmed
                     requirements. Once that purchase has been made, we may no
                     longer be able to recover the amount paid to the seller or
                     supplier.
                   </p>
 
                   <div className="rounded-2xl border border-red-200 bg-red-50 p-6">
-                    <h3 className="font-semibold text-red-900">
-                      Important
-                    </h3>
+                    <h3 className="font-semibold text-red-900">Important</h3>
 
                     <p className="mt-3 leading-7 text-red-800/80">
                       Please review the product details, quantity, destination,
@@ -295,15 +292,14 @@ export default function CancellationRefundPage() {
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
                     Once the product has been purchased, HyderabadSe will
-                    proceed with the applicable fulfilment and shipping
-                    process.
+                    proceed with the applicable fulfilment and shipping process.
                   </p>
 
                   <p>
                     Before the final shipment is arranged, we will communicate
-                    the applicable shipping amount and relevant delivery
-                    details with you. The shipping amount is separate from the
-                    product purchase amount unless otherwise stated.
+                    the applicable shipping amount and relevant delivery details
+                    with you. The shipping amount is separate from the product
+                    purchase amount unless otherwise stated.
                   </p>
 
                   <p>
@@ -313,16 +309,16 @@ export default function CancellationRefundPage() {
 
                   <p>
                     Customers will also receive the relevant tracking
-                    information, shipment reference and other available
-                    delivery details so that the shipment can be followed
-                    through the applicable carrier or logistics provider.
+                    information, shipment reference and other available delivery
+                    details so that the shipment can be followed through the
+                    applicable carrier or logistics provider.
                   </p>
 
                   <p>
-                    Tracking availability and frequency of updates depend on
-                    the shipping carrier and logistics provider. HyderabadSe
-                    does not control the carrier&apos;s scanning schedule or
-                    delivery network.
+                    Tracking availability and frequency of updates depend on the
+                    shipping carrier and logistics provider. HyderabadSe does
+                    not control the carrier&apos;s scanning schedule or delivery
+                    network.
                   </p>
                 </div>
               </section>
@@ -336,10 +332,10 @@ export default function CancellationRefundPage() {
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
                     HyderabadSe may source products from different sellers,
-                    stores, suppliers or marketplaces based on the customer&apos;s
-                    requirements. In many cases, the product is purchased
-                    specifically because the customer has requested and
-                    confirmed it.
+                    stores, suppliers or marketplaces based on the
+                    customer&apos;s requirements. In many cases, the product is
+                    purchased specifically because the customer has requested
+                    and confirmed it.
                   </p>
 
                   <p>
@@ -359,10 +355,10 @@ export default function CancellationRefundPage() {
 
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
-                    If a serious issue occurs after purchase, such as a
-                    supplier cancelling the transaction, a product becoming
-                    unavailable before fulfilment, or another circumstance
-                    outside the normal order process, please contact us.
+                    If a serious issue occurs after purchase, such as a supplier
+                    cancelling the transaction, a product becoming unavailable
+                    before fulfilment, or another circumstance outside the
+                    normal order process, please contact us.
                   </p>
 
                   <p>
@@ -407,6 +403,7 @@ export default function CancellationRefundPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

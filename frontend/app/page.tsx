@@ -19,10 +19,11 @@ import { CategoryIcon } from "@/components/Icon";
 // import { MobileNav } from "@/components/MobileNav";
 // import VoiceEnquiryButton from "@/components/VoiceEnquiryButton";
 import { RequestForm } from "@/components/RequestForm";
-// import WhatsAppButton from "@/components/WhatsAppButton";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { categories, destinations, faqs, siteConfig } from "@/lib/site";
 import Link from "next/link";
 import Image from "next/image";
+import Footer from "@/components/Footer";
 // import VoiceEnquiry from "@/components/VoiceEnquiry";
 
 const nav = [
@@ -216,7 +217,10 @@ export default function HomePage() {
             <Link href="#request" className="button-primary">
               Request a product
             </Link>
-            <Link href="mailto:hyderabadseorder@gmail.com" className="button-enquire">
+            <Link
+              href="mailto:hyderabadseorder@gmail.com"
+              className="button-enquire"
+            >
               Enquire Now
             </Link>
 
@@ -429,6 +433,129 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      <section className="shell py-16 lg:py-20">
+        <div className="grid gap-8 lg:grid-cols-[.65fr_1.35fr] lg:items-end">
+          <div>
+            <p className="md:section-title section-title2 whitespace-nowrap">
+              Why Choose Hyderabadse
+            </p>
+
+            <h2 className="eyebrow mt-3">India, sourced for you.</h2>
+          </div>
+
+          <p className="max-w-2xl text-sm leading-6 text-ink/60">
+            You choose what you want from India. We purchase it specifically for
+            you and ship it to your destination, making products from India
+            accessible wherever you are.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              number: "01",
+              title: "Choose Any Product",
+              copy: "From everyday essentials to your favourite Indian brands, simply tell us what you want to buy from India.",
+              icon: (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  className="h-5 w-5"
+                >
+                  <path d="M6 3h12l1 5H5l1-5Z" />
+                  <path d="M5 8h14l-1 13H6L5 8Z" />
+                  <path d="M9 12h6" />
+                </svg>
+              ),
+            },
+            {
+              number: "02",
+              title: "Bought For You",
+              copy: "We purchase the product specifically for your request instead of shipping from a fixed, pre-stocked catalogue.",
+              icon: (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  className="h-5 w-5"
+                >
+                  <path d="M3 7h18" />
+                  <path d="M5 7l1-3h12l1 3" />
+                  <path d="M5 7v13h14V7" />
+                  <path d="M9 11h6" />
+                  <path d="M9 15h4" />
+                </svg>
+              ),
+            },
+            {
+              number: "03",
+              title: "Made Around Your Request",
+              copy: "Every order starts with what you want. Your product, your preferred brand, and your destination.",
+              icon: (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  className="h-5 w-5"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21a8 8 0 0 1 16 0" />
+                  <path d="M17 3v4" />
+                  <path d="M15 5h4" />
+                </svg>
+              ),
+            },
+            {
+              number: "04",
+              title: "India to Your Door",
+              copy: "We handle the sourcing and shipping process so you can receive products from India wherever you are.",
+              icon: (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  className="h-5 w-5"
+                >
+                  <path d="M3 7h11v10H3z" />
+                  <path d="M14 10h4l3 3v4h-7z" />
+                  <circle cx="7" cy="19" r="2" />
+                  <circle cx="18" cy="19" r="2" />
+                </svg>
+              ),
+            },
+          ].map((item) => (
+            <article
+              key={item.number}
+              className="group relative overflow-hidden rounded-2xl border border-ink/10 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+            >
+              <div className="flex items-start justify-between">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-ink text-white transition-transform duration-300 group-hover:scale-105">
+                  {item.icon}
+                </span>
+                {""}
+
+                <span className="text-[10px] font-bold uppercase tracking-[.15em] text-ink/35">
+                  {item.number}
+                </span>
+              </div>
+
+              <h3 className="mt-6 text-lg font-bold tracking-tight">
+                {item.title}
+              </h3>
+
+              <p className="mt-2 min-h-[72px] text-sm leading-6 text-ink/60">
+                {item.copy}
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {/* =========================================================
           REQUEST FORM
       ========================================================= */}
@@ -823,11 +950,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <Footer/>
 
       {/* =========================================================
           FOOTER
       ========================================================= */}
-      <footer className="bg-ink py-10 text-white">
+      {/* <footer className="bg-ink py-10 text-white">
         <div className="shell">
           <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-start">
             <div>
@@ -902,8 +1030,9 @@ export default function HomePage() {
             before an order is accepted.
           </div>
         </div>
-      </footer>
+      </footer> */}
       {/* <VoiceEnquiry /> */}
+      <WhatsAppButton />
     </main>
   );
 }

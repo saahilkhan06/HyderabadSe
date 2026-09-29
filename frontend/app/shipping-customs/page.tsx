@@ -1,3 +1,5 @@
+import BackToHyderabadse from "@/components/BackToHyderabadse";
+import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,6 +11,7 @@ export const metadata: Metadata = {
 export default function ShippingCustomsPage() {
   return (
     <main className="bg-cream text-ink">
+      <BackToHyderabadse />
       <section className="shell py-14 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-16">
           {/* Side navigation */}
@@ -82,8 +85,7 @@ export default function ShippingCustomsPage() {
 
                 <p className="mt-4 leading-7 text-slate-600">
                   Shipping is arranged according to the destination, package
-                  size, product characteristics and available delivery
-                  options.
+                  size, product characteristics and available delivery options.
                 </p>
 
                 <p className="mt-4 leading-7 text-slate-600">
@@ -93,9 +95,7 @@ export default function ShippingCustomsPage() {
               </section>
 
               <section id="shipping-cost">
-                <h2 className="text-2xl font-semibold">
-                  2. Shipping Cost
-                </h2>
+                <h2 className="text-2xl font-semibold">2. Shipping Cost</h2>
 
                 <p className="mt-4 leading-7 text-slate-600">
                   International shipping costs depend on factors such as the
@@ -132,9 +132,8 @@ export default function ShippingCustomsPage() {
                 </p>
 
                 <p className="mt-4 leading-7 text-slate-600">
-                  Tracking updates may not appear immediately after dispatch
-                  and can sometimes take time to be reflected in the courier
-                  system.
+                  Tracking updates may not appear immediately after dispatch and
+                  can sometimes take time to be reflected in the courier system.
                 </p>
               </section>
 
@@ -155,8 +154,8 @@ export default function ShippingCustomsPage() {
                 </p>
 
                 <p className="mt-4 leading-7 text-slate-600">
-                  Customers should be aware that some products may be subject
-                  to import restrictions, documentation requirements or other
+                  Customers should be aware that some products may be subject to
+                  import restrictions, documentation requirements or other
                   destination-country rules.
                 </p>
 
@@ -208,16 +207,14 @@ export default function ShippingCustomsPage() {
                 </p>
 
                 <p className="mt-4 leading-7 text-slate-600">
-                  If we receive information about a significant shipment
-                  issue, we will try to communicate it with you and assist with
-                  the available next steps.
+                  If we receive information about a significant shipment issue,
+                  we will try to communicate it with you and assist with the
+                  available next steps.
                 </p>
               </section>
 
               <section id="address">
-                <h2 className="text-2xl font-semibold">
-                  7. Delivery Address
-                </h2>
+                <h2 className="text-2xl font-semibold">7. Delivery Address</h2>
 
                 <p className="mt-4 leading-7 text-slate-600">
                   Please provide a complete and accurate delivery address,
@@ -244,8 +241,8 @@ export default function ShippingCustomsPage() {
 
                 <p className="mt-4 leading-7 text-slate-600">
                   If we learn that a requested product cannot reasonably be
-                  shipped to your destination, we will communicate this with
-                  you rather than proceeding without clarification.
+                  shipped to your destination, we will communicate this with you
+                  rather than proceeding without clarification.
                 </p>
               </section>
 
@@ -282,6 +279,7 @@ export default function ShippingCustomsPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

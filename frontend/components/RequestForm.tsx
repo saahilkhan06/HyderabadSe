@@ -302,8 +302,8 @@ export function RequestForm() {
         </h3>
 
         <p className="mt-3 max-w-xl text-sm leading-6 text-ink/60">
-          We&apos;ll review the details and contact you with the next step.
-          This request does not confirm an order or payment.
+          We&apos;ll review the details and contact you with the next step. This
+          request does not confirm an order or payment.
         </p>
 
         <button
@@ -332,6 +332,7 @@ export function RequestForm() {
             id="name"
             aria-label="Full name"
             className="field"
+            placeholder="eg.John"
             value={form.name}
             onChange={(e) => set("name", e.target.value)}
             required
@@ -343,6 +344,7 @@ export function RequestForm() {
             id="email"
             aria-label="Email address"
             className="field"
+            placeholder="eg.example@gmail.com"
             type="email"
             value={form.email}
             onChange={(e) => set("email", e.target.value)}
@@ -355,6 +357,7 @@ export function RequestForm() {
             id="whatsapp"
             aria-label="WhatsApp number"
             className="field"
+            placeholder="eg.+971 XX XXX XXXX,+966 XX XXX XXXX"
             type="tel"
             inputMode="tel"
             value={form.whatsapp}
@@ -381,21 +384,21 @@ export function RequestForm() {
           </select>
         </Field>
 
-        <Field label="Product name or description" required>
-          <input
+        <Field label="List your Products" required>
+          <textarea
             id="productName"
             aria-label="Product name or description"
-            className="field"
+            className="field min-h-15 resize-y py-3"
             value={form.productName}
             onChange={(e) => set("productName", e.target.value)}
-            placeholder="What are you looking for?"
+            placeholder="e.g. Sweets & Cookies,Shirts & Sarees,Indian pickles,Medicines,Any other Accessories,etc"
             required
           />
         </Field>
 
         {/* OPTIONAL */}
 
-        <Field label="Destination city or area">
+        {/* <Field label="Destination city or area">
           <input
             id="destinationCity"
             aria-label="Destination city or area"
@@ -404,13 +407,14 @@ export function RequestForm() {
             onChange={(e) => set("destinationCity", e.target.value)}
             placeholder="e.g. Dubai Marina"
           />
-        </Field>
+        </Field> */}
 
         <Field label="Preferred brand, shop, or seller">
           <input
             id="preferredBrand"
             aria-label="Preferred brand, shop, or seller"
             className="field"
+            placeholder="eg.Pista House,Zudio,H&M,Apollo pharmacy"
             value={form.preferredBrand ?? ""}
             onChange={(e) => set("preferredBrand", e.target.value)}
           />
@@ -438,7 +442,7 @@ export function RequestForm() {
             className="field"
             value={form.quantity ?? ""}
             onChange={(e) => set("quantity", e.target.value)}
-            placeholder="e.g. 1"
+            placeholder="e.g. 2 boxes, 3 shirts"
           />
         </Field>
 
@@ -501,7 +505,7 @@ export function RequestForm() {
             className="field min-h-32 resize-y py-3"
             value={form.notes ?? ""}
             onChange={(e) => set("notes", e.target.value)}
-            placeholder="Colour, size, seller details, substitutions, etc."
+            placeholder="Medium size, less spicy, specific colour, preferred shop, or any other details..."
           />
         </Field>
       </div>
@@ -517,8 +521,8 @@ export function RequestForm() {
         />
 
         <span>
-          I agree that HyderabadSe may contact me about this request and use
-          the submitted information to process it.
+          I agree that HyderabadSe may contact me about this request and use the
+          submitted information to process it.
         </span>
       </label>
 
@@ -535,9 +539,9 @@ export function RequestForm() {
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-xl text-xs leading-5 text-ink/50">
-          Submitting this form starts a request. It does not confirm an order
-          or payment. We verify availability, eligibility, pricing, and
-          delivery before confirmation.
+          Submitting this form starts a request. It does not confirm an order or
+          payment. We verify availability, eligibility, pricing, and delivery
+          before confirmation.
         </p>
 
         <button

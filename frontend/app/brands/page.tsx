@@ -3,6 +3,9 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { siteConfig } from "@/lib/site";
 import Link from "next/link";
 import Image from "next/image";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import Footer from "@/components/Footer";
+
 export const metadata: Metadata = {
   title: "Popular Indian Brands | HyderabadSe",
   description:
@@ -236,33 +239,41 @@ export default function BrandsPage() {
         <div className="shell flex h-[70px] items-center justify-between">
           <Link
             href="/"
-            className="flex items-center gap-3"
+            className="flex items-center gap-2 sm:gap-3"
             aria-label="HyderabadSe home"
           >
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-ink font-display text-lg text-white">
+            <div className="grid h-9 w-9 sm:h-10 sm:w-10 place-items-center rounded-xl bg-ink font-display text-lg text-white">
               <Image alt="H" src="/logo-2.png" width={434} height={434} />
             </div>
 
             <span>
-              <span className="block font-display text-[21px] leading-none">
+              <span className="block font-display text-[17px] leading-none sm:text-[21px]">
                 HyderabadSe India
               </span>
 
-              <span className="mt-1 block text-[9px] font-bold uppercase tracking-[.22em] text-terracotta">
+              <span className="mt-1 block text-[8px] font-bold uppercase tracking-[.18em] text-terracotta sm:text-[9px] sm:tracking-[.22em]">
                 India → Gulf
               </span>
             </span>
           </Link>
 
-          <div className="flex items-center gap-2">
-            <Link href="/" className="button-secondary hidden sm:inline-flex">
-              <ArrowLeft size={16} />
-              Back to home
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+            <Link
+              href="/"
+              className="button-secondary px-2.5 py-2 text-xs sm:px-4 sm:py-2.5 sm:text-sm"
+            >
+              <ArrowLeft size={14} className="sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Back to home</span>
+              <span className="sm:hidden">Back</span>
             </Link>
 
-            <Link href="/#request" className="button-primary">
-              Request a product
-              <ArrowRight size={16} />
+            <Link
+              href="/#request"
+              className="button-primary px-2.5 py-2 text-xs sm:px-4 sm:py-2.5 sm:text-sm"
+            >
+              <span className="hidden sm:inline">Request a product</span>
+              <span className="sm:hidden">Request</span>
+              <ArrowRight size={14} className="sm:h-4 sm:w-4" />
             </Link>
           </div>
         </div>
@@ -345,37 +356,9 @@ export default function BrandsPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-ink py-10 text-white">
-        <div className="shell flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <div className="flex items-center gap-3">
-              <Image
-                src={"/webicon.png"}
-                alt={"H"}
-                width={48}
-                height={48}
-                className="h-12 w-12 object-cover rounded-full"
-                loading="lazy"
-              />
+      <Footer />
 
-              <span className="font-display text-2xl">HyderabadSe</span>
-            </div>
-
-            <p className="mt-3 max-w-md text-xs leading-5 text-white/40">
-              {siteConfig.alternateTagline}. Brand examples are for discovery
-              only and are subject to sourcing and destination checks.
-            </p>
-          </div>
-
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-bold text-white/65 hover:text-white"
-          >
-            <ArrowLeft size={14} />
-            Back to HyderabadSe
-          </Link>
-        </div>
-      </footer>
+      <WhatsAppButton />
     </main>
   );
 }

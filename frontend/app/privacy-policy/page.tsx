@@ -1,19 +1,20 @@
-
 export const metadata = {
   title: "Privacy Policy | HyderabadSe ",
   description:
     "Learn how HyderabadSe  collects, uses, protects and handles customer information submitted through our website and services.",
 };
-
+import BackToHyderabadse from "@/components/BackToHyderabadse";
+import Footer from "@/components/Footer";
 export default function PrivacyPolicyPage() {
   return (
     <main className="bg-cream text-ink">
+      <BackToHyderabadse />
       {/* Hero */}
       <section className="border-b border-ink/10 bg-[#f7f2e9]">
         <div className="shell py-8 lg:py-15">
           <div className="max-w-3xl">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-orange-600">
-              HyderabadSe 
+              HyderabadSe
             </p>
 
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -22,9 +23,9 @@ export default function PrivacyPolicyPage() {
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
               Your trust matters to us. This Privacy Policy explains what
-              information HyderabadSe may receive when you use our website,
-              why we need it, how we use it to provide our services, and the
-              steps we take to protect it.
+              information HyderabadSe may receive when you use our website, why
+              we need it, how we use it to provide our services, and the steps
+              we take to protect it.
             </p>
 
             <p className="mt-5 text-sm text-slate-500">
@@ -122,16 +123,16 @@ export default function PrivacyPolicyPage() {
                   </h2>
 
                   <p className="mt-4 leading-8 text-slate-600">
-                    HyderabadSe is built to make product sourcing and
-                    assistance easier. We only ask for information that is
-                    relevant to helping us understand your request, contact
-                    you, process your order and provide the requested service.
+                    HyderabadSe is built to make product sourcing and assistance
+                    easier. We only ask for information that is relevant to
+                    helping us understand your request, contact you, process
+                    your order and provide the requested service.
                   </p>
 
                   <p className="mt-4 leading-8 text-slate-600">
-                    We do not require customers to create an account or
-                    maintain a password to submit a product request or enquiry
-                    through our website.
+                    We do not require customers to create an account or maintain
+                    a password to submit a product request or enquiry through
+                    our website.
                   </p>
                 </div>
               </section>
@@ -144,9 +145,8 @@ export default function PrivacyPolicyPage() {
 
                 <div className="mt-6 space-y-6 text-slate-600 leading-8">
                   <p>
-                    Depending on the service you use, we may receive
-                    information that you voluntarily provide through our
-                    website.
+                    Depending on the service you use, we may receive information
+                    that you voluntarily provide through our website.
                   </p>
 
                   <div>
@@ -155,10 +155,9 @@ export default function PrivacyPolicyPage() {
                     </h3>
 
                     <p className="mt-2">
-                      This may include your name, email address, WhatsApp
-                      number or other contact information you provide so that
-                      we can communicate with you regarding your enquiry or
-                      request.
+                      This may include your name, email address, WhatsApp number
+                      or other contact information you provide so that we can
+                      communicate with you regarding your enquiry or request.
                     </p>
                   </div>
 
@@ -170,8 +169,8 @@ export default function PrivacyPolicyPage() {
                     <p className="mt-2">
                       We may receive information about the product you are
                       looking for, preferred brand, product link, quantity,
-                      budget, destination, shipping preference, desired
-                      delivery date and other information you choose to provide.
+                      budget, destination, shipping preference, desired delivery
+                      date and other information you choose to provide.
                     </p>
                   </div>
 
@@ -182,8 +181,8 @@ export default function PrivacyPolicyPage() {
 
                     <p className="mt-2">
                       If you use our voice enquiry feature, the information
-                      generated from your enquiry may be converted into text
-                      and submitted to us so that our team can understand and
+                      generated from your enquiry may be converted into text and
+                      submitted to us so that our team can understand and
                       respond to your request.
                     </p>
                   </div>
@@ -210,9 +209,7 @@ export default function PrivacyPolicyPage() {
                 </h2>
 
                 <div className="mt-6 space-y-4 text-slate-600 leading-8">
-                  <p>
-                    We may use the information you provide to:
-                  </p>
+                  <p>We may use the information you provide to:</p>
 
                   <ul className="list-disc space-y-3 pl-6">
                     <li>
@@ -232,9 +229,7 @@ export default function PrivacyPolicyPage() {
                       arrange or coordinate product sourcing and fulfilment;
                     </li>
 
-                    <li>
-                      communicate shipping and delivery information;
-                    </li>
+                    <li>communicate shipping and delivery information;</li>
 
                     <li>
                       provide tracking or shipment references where available;
@@ -249,9 +244,7 @@ export default function PrivacyPolicyPage() {
                       respond to questions, complaints or support requests;
                     </li>
 
-                    <li>
-                      maintain business and transaction records; and
-                    </li>
+                    <li>maintain business and transaction records; and</li>
 
                     <li>
                       protect the security and integrity of our website and
@@ -276,22 +269,22 @@ export default function PrivacyPolicyPage() {
                     Information may be shared when reasonably necessary to
                     provide the service you requested. For example, relevant
                     information may need to be provided to sellers, suppliers,
-                    purchasing partners, shipping providers, logistics
-                    companies or other service providers involved in fulfilling
-                    your confirmed order.
+                    purchasing partners, shipping providers, logistics companies
+                    or other service providers involved in fulfilling your
+                    confirmed order.
                   </p>
 
                   <p>
                     We may also use trusted technical service providers for
-                    functions such as email delivery, website hosting,
-                    database storage, infrastructure and other services
-                    necessary to operate HyderabadSe.
+                    functions such as email delivery, website hosting, database
+                    storage, infrastructure and other services necessary to
+                    operate HyderabadSe.
                   </p>
 
                   <p>
-                    Such providers may process information only as necessary
-                    for the services they provide to us or as otherwise
-                    permitted by applicable law.
+                    Such providers may process information only as necessary for
+                    the services they provide to us or as otherwise permitted by
+                    applicable law.
                   </p>
 
                   <p>
@@ -343,8 +336,8 @@ export default function PrivacyPolicyPage() {
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
                     Where payments are made through a third-party payment
-                    provider, payment processing may be handled directly by
-                    that provider.
+                    provider, payment processing may be handled directly by that
+                    provider.
                   </p>
 
                   <p>
@@ -388,8 +381,8 @@ export default function PrivacyPolicyPage() {
 
                   <p>
                     However, no method of transmitting or storing information
-                    over the internet can be guaranteed to be completely
-                    secure. We therefore cannot promise absolute security.
+                    over the internet can be guaranteed to be completely secure.
+                    We therefore cannot promise absolute security.
                   </p>
                 </div>
               </section>
@@ -405,8 +398,8 @@ export default function PrivacyPolicyPage() {
                     We may retain information for as long as reasonably
                     necessary to provide our services, maintain transaction and
                     business records, resolve disputes, provide customer
-                    support, prevent misuse, and comply with applicable legal
-                    or regulatory obligations.
+                    support, prevent misuse, and comply with applicable legal or
+                    regulatory obligations.
                   </p>
 
                   <p>
@@ -431,9 +424,9 @@ export default function PrivacyPolicyPage() {
                   </p>
 
                   <p>
-                    Where applicable and subject to legal or legitimate
-                    business requirements, you may request access to, correction
-                    of, or deletion of personal information.
+                    Where applicable and subject to legal or legitimate business
+                    requirements, you may request access to, correction of, or
+                    deletion of personal information.
                   </p>
 
                   <p>
@@ -452,16 +445,15 @@ export default function PrivacyPolicyPage() {
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
                     HyderabadSe may rely on third-party services for
-                    infrastructure, hosting, database services, email
-                    delivery, payments, shipping and other operational
-                    requirements.
+                    infrastructure, hosting, database services, email delivery,
+                    payments, shipping and other operational requirements.
                   </p>
 
                   <p>
-                    These third parties operate independently and may have
-                    their own terms and privacy policies. We encourage
-                    customers to review the policies of third-party services
-                    when they interact with those services.
+                    These third parties operate independently and may have their
+                    own terms and privacy policies. We encourage customers to
+                    review the policies of third-party services when they
+                    interact with those services.
                   </p>
                 </div>
               </section>
@@ -474,8 +466,8 @@ export default function PrivacyPolicyPage() {
 
                 <div className="mt-6 space-y-5 text-slate-600 leading-8">
                   <p>
-                    HyderabadSe&apos;s services are intended for general customers
-                    and are not specifically directed toward children.
+                    HyderabadSe&apos;s services are intended for general
+                    customers and are not specifically directed toward children.
                   </p>
 
                   <p>
@@ -510,7 +502,7 @@ export default function PrivacyPolicyPage() {
               <section id="contact">
                 <div className="rounded-2xl bg-ink p-7 text-white sm:p-9">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-orange-300">
-                    HyderabadSe 
+                    HyderabadSe
                   </p>
 
                   <h2 className="mt-3 text-2xl font-semibold">
@@ -535,6 +527,7 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
-import WhatsAppButton from "@/components/WhatsAppButton";
 
 
 export const metadata: Metadata = {
@@ -46,7 +45,6 @@ export default function RootLayout({
         />
 
         {children}
-        <WhatsAppButton/>
 
       </body>
     </html>
