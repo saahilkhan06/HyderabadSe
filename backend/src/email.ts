@@ -478,3 +478,90 @@ export async function sendCustomerVoiceEnquiryConfirmationEmail(
     );
   }
 }
+
+/* =========================================================
+   COMMENT → ADMIN
+========================================================= */
+
+export type CommentNotificationEmailData = {
+  name: string;
+  comment: string;
+  createdAt: Date;
+};
+
+export async function sendCommentNotificationEmail(
+  data: CommentNotificationEmailData,
+) {
+  const mailer = getResend();
+
+  const to = getNotificationEmail();
+  const from = getEmailFrom();
+
+  const formattedDate = new Date(data.createdAt).toLocaleString("en-IN", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+
+  const subject = `New HyderabadSe comment from ${data.name}`;
+
+  const html = `
+    <div style="margin:0;background:#f7f2e9;padding:32px 16px;font-family:Arial,Helvetica,sans-serif;color:#102a43;">
+      <div style="max-width:720px;margin:0 auto;background:#ffffff;border:1px solid #e8e1d6;border-radius:18px;overflow:hidden;">
+
+        <div style="background:#102a43;padding:24px 28px;color:#ffffff;">
+
+          <div style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#e4be70;font-weight:700;">
+            HyderabadSe
+          </div>
+
+          <h1 style="margin:8px 0 0;font-size:25px;line-height:1.25;">
+            New website comment
+          </h1>
+
+          <p style="margin:8px 0 0;color:#dce5ec;">
+            Someone just left a comment on your HyderabadSe website.
+          </p>
+
+        </div>
+
+        <div style="padding:24px 28px;">
+
+          <table style="width:100%;border-collapse:collapse;font-size:14px;">
+
+            ${row("Name", data.name)}
+
+            ${row("Date & time", formattedDate)}
+
+            ${row("Comment", data.comment)}
+
+          </table>
+
+          <div style="margin-top:22px;padding:14px 16px;background:#f7f2e9;border-radius:12px;color:#475569;font-size:13px;line-height:1.6;">
+            This comment was submitted through the HyderabadSe website.
+          </div>
+
+        </div>
+      </div>
+    </div>
+  `;
+
+  const result = await mailer.emails.send({
+    from,
+    to,
+    subject,
+    html,
+    text: [
+      "New HyderabadSe website comment",
+      "",
+      `Name: ${data.name}`,
+      `Comment: ${data.comment}`,
+      `Date & time: ${formattedDate}`,
+    ].join("\n"),
+  });
+
+  if (result.error) {
+    throw new Error(
+      `Failed to send comment notification email: ${result.error.message}`,
+    );
+  }
+}
