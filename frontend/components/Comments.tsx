@@ -182,13 +182,8 @@ export default function Comments() {
 
         <div className="card p-6 sm:p-8">
           <p className="section-title">
-            Community
-          </p>
-
-          <h2 className="eyebrow mt-3">
             Share your experience.
-          </h2>
-
+          </p>
           <p className="mt-3 max-w-lg text-sm leading-6 text-ink/60">
             Completed an order with HyderabadSe? We would love
             to hear about your experience.
@@ -196,7 +191,7 @@ export default function Comments() {
 
           <form
             onSubmit={handleSubmit}
-            className="mt-7 space-y-5"
+            className="mt-3 space-y-5"
           >
             {/* NAME */}
 
@@ -234,7 +229,7 @@ export default function Comments() {
 
               <textarea
                 id="comment-text"
-                className="field min-h-[130px] resize-none"
+                className="field min-h-[80px] resize-none"
                 placeholder="Tell us about your experience with HyderabadSe..."
                 value={comment}
                 maxLength={500}
@@ -257,7 +252,7 @@ export default function Comments() {
               className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
             >
               <label htmlFor="comment-website">
-                Website
+                    
               </label>
 
               <input

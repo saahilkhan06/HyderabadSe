@@ -28,6 +28,7 @@ import Image from "next/image";
 import Footer from "@/components/Footer";
 import Comments from "@/components/Comments";
 // import VoiceEnquiry from "@/components/VoiceEnquiry";
+import HyderabadSeAssistant from "@/components/HyderabadSeAssistant"
 
 const nav = [
   ["Products we can source", "#products"],
@@ -50,6 +51,7 @@ const statuses = [
 export default function HomePage() {
   return (
     <main className="min-h-screen overflow-x-clip">
+      <HyderabadSeAssistant/>
       {/* Decorative background */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-terracotta/10 blur-3xl" />
