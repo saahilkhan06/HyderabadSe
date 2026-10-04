@@ -26,6 +26,7 @@ import { categories, destinations, faqs, siteConfig } from "@/lib/site";
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import Comments from "@/components/Comments";
 // import VoiceEnquiry from "@/components/VoiceEnquiry";
 
 const nav = [
@@ -582,6 +583,8 @@ export default function HomePage() {
 
         <RequestForm />
       </section>
+            <Comments/>
+
 
       {/* =========================================================
           PERSON IN INDIA
@@ -705,29 +708,6 @@ export default function HomePage() {
 
                   <p className="mt-2 text-sm leading-6 text-white/50">{copy}</p>
                 </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-10 overflow-hidden rounded-xl border border-white/10">
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8">
-              {statuses.map((status, index) => (
-                <div
-                  key={status}
-                  className="border-b border-r border-white/10 px-3 py-4 text-center text-[10px] font-semibold text-white/45 lg:border-b-0"
-                >
-                  <span
-                    className={`mx-auto mb-2 grid h-6 w-6 place-items-center rounded-full text-[9px] ${
-                      index === 0
-                        ? "bg-[#d8b978] text-ink"
-                        : "bg-white/10 text-white/50"
-                    }`}
-                  >
-                    {index + 1}
-                  </span>
-
-                  {status}
-                </div>
               ))}
             </div>
           </div>
@@ -894,7 +874,7 @@ export default function HomePage() {
       {/* =========================================================
           CUSTOMER STORIES
       ========================================================= */}
-      <section className="shell pb-16 lg:pb-20">
+      {/* <section className="shell pb-16 lg:pb-20">
         <div className="rounded-[1.8rem] border border-ink/10 bg-ink p-7 text-white sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
@@ -918,7 +898,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* =========================================================
           FAQ
