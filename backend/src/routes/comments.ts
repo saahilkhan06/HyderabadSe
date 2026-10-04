@@ -3,12 +3,10 @@ import type {
   FastifyRequest,
 } from "fastify";
 
-import { CommentModel } from "../models/CommentModel.ts";
-import { sendCommentNotificationEmail } from "../email";
+import type { ServerResponse } from "node:http";
 
-/* =========================================================
-   TYPES
-========================================================= */
+import { CommentModel } from "../models/CommentModel.ts";
+import { sendCommentNotificationEmail } from "../email.js";
 
 type CreateCommentBody = {
   name?: string;
@@ -17,20 +15,10 @@ type CreateCommentBody = {
 };
 
 type SSEClient = {
-  response: FastifyRequest["raw"];
+  response: ServerResponse;
 };
 
-/* =========================================================
-   CONNECTED SSE CLIENTS
-========================================================= */
-
 const clients = new Set<SSEClient>();
-
-/* =========================================================
-   SIMPLE COMMENT RATE LIMIT
-========================================================= */
-
-// One IP can post at most 5 comments every 10 minutes.
 
 const rateLimitMap = new Map<
   string,
@@ -41,10 +29,15 @@ const rateLimitMap = new Map<
 >();
 
 function getClientIp(request: FastifyRequest): string {
-  const forwarded = request.headers["x-forwarded-for"];
+  const forwarded =
+    request.headers["x-forwarded-for"];
 
   if (typeof forwarded === "string") {
-    return forwarded.split(",")[0].trim();
+    return forwarded.split(",")[0]?.trim() || "unknown";
+  }
+
+  if (Array.isArray(forwarded)) {
+    return forwarded[0]?.trim() || "unknown";
   }
 
   return request.ip || "unknown";
@@ -73,22 +66,19 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
-/* =========================================================
-   BROADCAST COMMENT TO CONNECTED VISITORS
-========================================================= */
-
 function broadcastComment(comment: {
   _id: unknown;
   name: string;
   comment: string;
   createdAt: Date;
 }) {
-  const payload = `data: ${JSON.stringify({
-    _id: String(comment._id),
-    name: comment.name,
-    comment: comment.comment,
-    createdAt: comment.createdAt,
-  })}\n\n`;
+  const payload =
+    `data: ${JSON.stringify({
+      _id: String(comment._id),
+      name: comment.name,
+      comment: comment.comment,
+      createdAt: comment.createdAt,
+    })}\n\n`;
 
   for (const client of clients) {
     try {
@@ -99,31 +89,28 @@ function broadcastComment(comment: {
   }
 }
 
-/* =========================================================
-   COMMENT ROUTES
-========================================================= */
-
 export default async function commentsRoutes(
   fastify: FastifyInstance,
 ) {
-  /* =======================================================
-     GET /api/comments
-
-     Returns the latest 50 comments.
-  ======================================================= */
-
+  /*
+   * GET COMMENTS
+   */
   fastify.get(
     "/api/comments",
     async (_request, reply) => {
       try {
-        const comments = await CommentModel.find()
-          .sort({ createdAt: -1 })
-          .limit(50)
-          .lean();
+        const comments =
+          await CommentModel.find()
+            .sort({ createdAt: -1 })
+            .limit(50)
+            .lean();
 
         return reply.send(comments);
       } catch (error) {
-        fastify.log.error(error);
+        fastify.log.error(
+          error,
+          "Unable to load comments",
+        );
 
         return reply.code(500).send({
           message: "Unable to load comments.",
@@ -132,39 +119,42 @@ export default async function commentsRoutes(
     },
   );
 
-  /* =======================================================
-     POST /api/comments
-
-     Creates and saves a new comment.
-  ======================================================= */
-
+  /*
+   * CREATE COMMENT
+   */
   fastify.post<{ Body: CreateCommentBody }>(
     "/api/comments",
     async (request, reply) => {
       try {
+        const body = request.body ?? {};
+
         const name =
-          request.body?.name?.trim() || "";
+          typeof body.name === "string"
+            ? body.name.trim()
+            : "";
 
         const comment =
-          request.body?.comment?.trim() || "";
+          typeof body.comment === "string"
+            ? body.comment.trim()
+            : "";
 
         const website =
-          request.body?.website?.trim() || "";
+          typeof body.website === "string"
+            ? body.website.trim()
+            : "";
 
-        /* ---------------------------------------------------
-           HONEYPOT SPAM PROTECTION
-        --------------------------------------------------- */
-
+        /*
+         * Honeypot spam protection
+         */
         if (website) {
           return reply.code(400).send({
             message: "Invalid submission.",
           });
         }
 
-        /* ---------------------------------------------------
-           NAME VALIDATION
-        --------------------------------------------------- */
-
+        /*
+         * Name validation
+         */
         if (name.length < 2) {
           return reply.code(400).send({
             message: "Please enter your name.",
@@ -177,10 +167,9 @@ export default async function commentsRoutes(
           });
         }
 
-        /* ---------------------------------------------------
-           COMMENT VALIDATION
-        --------------------------------------------------- */
-
+        /*
+         * Comment validation
+         */
         if (comment.length < 2) {
           return reply.code(400).send({
             message: "Please enter a comment.",
@@ -194,10 +183,9 @@ export default async function commentsRoutes(
           });
         }
 
-        /* ---------------------------------------------------
-           RATE LIMIT
-        --------------------------------------------------- */
-
+        /*
+         * Rate limiting
+         */
         const ip = getClientIp(request);
 
         if (!checkRateLimit(ip)) {
@@ -207,19 +195,14 @@ export default async function commentsRoutes(
           });
         }
 
-        /* ---------------------------------------------------
-           SAVE COMMENT TO MONGODB
-        --------------------------------------------------- */
-
+        /*
+         * Save to MongoDB
+         */
         const savedComment =
           await CommentModel.create({
             name,
             comment,
           });
-
-        /* ---------------------------------------------------
-           PUBLIC COMMENT OBJECT
-        --------------------------------------------------- */
 
         const publicComment = {
           _id: savedComment._id,
@@ -228,19 +211,16 @@ export default async function commentsRoutes(
           createdAt: savedComment.createdAt,
         };
 
-        /* ---------------------------------------------------
-           LIVE UPDATE
-        --------------------------------------------------- */
-
+        /*
+         * Broadcast immediately to connected visitors
+         */
         broadcastComment(publicComment);
 
-        /* ---------------------------------------------------
-           EMAIL NOTIFICATION
-
-           Runs in the background so the visitor does not
-           have to wait for Resend.
-        --------------------------------------------------- */
-
+        /*
+         * Send email notification.
+         *
+         * Do NOT make the visitor wait for email delivery.
+         */
         void sendCommentNotificationEmail({
           name: savedComment.name,
           comment: savedComment.comment,
@@ -252,16 +232,15 @@ export default async function commentsRoutes(
           );
         });
 
-        /* ---------------------------------------------------
-           RESPONSE
-        --------------------------------------------------- */
-
         return reply.code(201).send({
           message: "Comment posted successfully.",
           comment: publicComment,
         });
       } catch (error) {
-        fastify.log.error(error);
+        fastify.log.error(
+          error,
+          "Unable to post comment",
+        );
 
         return reply.code(500).send({
           message: "Unable to post comment.",
@@ -270,39 +249,35 @@ export default async function commentsRoutes(
     },
   );
 
-  /* =======================================================
-     GET /api/comments/stream
-
-     Server-Sent Events endpoint.
-
-     Visitors connect here and receive new comments
-     automatically without refreshing the page.
-  ======================================================= */
-
+  /*
+   * SERVER-SENT EVENTS
+   */
   fastify.get(
     "/api/comments/stream",
     async (request, reply) => {
       /*
-       * Take control of the raw response because SSE keeps
-       * the HTTP connection open.
+       * We take over the raw HTTP response because
+       * SSE is a long-lived connection.
        */
       reply.hijack();
 
-      const response = reply.raw;
+      const response: ServerResponse =
+        reply.raw;
 
       response.writeHead(200, {
         "Content-Type": "text/event-stream",
-        "Cache-Control": "no-cache, no-transform",
+        "Cache-Control":
+          "no-cache, no-transform",
         Connection: "keep-alive",
         "X-Accel-Buffering": "no",
         "Access-Control-Allow-Origin":
           process.env.CORS_ORIGIN || "*",
       });
 
-      /* ---------------------------------------------------
-         INITIAL CONNECTION MESSAGE
-      --------------------------------------------------- */
-
+      /*
+       * Tell the browser that the SSE connection
+       * has successfully opened.
+       */
       response.write(
         "event: connected\ndata: connected\n\n",
       );
@@ -313,10 +288,9 @@ export default async function commentsRoutes(
 
       clients.add(client);
 
-      /* ---------------------------------------------------
-         HEARTBEAT
-      --------------------------------------------------- */
-
+      /*
+       * Keep the connection alive.
+       */
       const heartbeat = setInterval(() => {
         try {
           response.write(": heartbeat\n\n");
@@ -326,10 +300,9 @@ export default async function commentsRoutes(
         }
       }, 25000);
 
-      /* ---------------------------------------------------
-         CONNECTION CLOSED
-      --------------------------------------------------- */
-
+      /*
+       * Remove disconnected visitors.
+       */
       request.raw.on("close", () => {
         clearInterval(heartbeat);
 
