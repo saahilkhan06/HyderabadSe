@@ -10,7 +10,8 @@ type Message = {
 const INITIAL_MESSAGE: Message = {
   role: "assistant",
   text:
-    "👋 **AssalamuAlaikum!** I'm **HyderabadSe Assistant**.\n\n" +
+    "👋 **AssalamuAlaikum, Namaste, Welcome!**\n" +
+    "I'm **HyderabadSe Assistant**.\n\n" +
     "I can help you find products from India, understand how HyderabadSe works, " +
     "and guide you through requesting something to be delivered to the Gulf.\n\n" +
     "Tell me what you're looking for — a product, brand, Indian item, or anything you want to source. 🇮🇳 → 🇦🇪",
@@ -21,7 +22,7 @@ const quickQuestions = [
   "Do you ship to Dubai?",
   "Do you also shop for us?",
   "Duration of Shipping?",
-  "will you help me buy clothes?"
+  "will you help me buy clothes?",
 ];
 const SymptomChecker = () => {
   const [isOpen, setIsOpen] = useState(false);
