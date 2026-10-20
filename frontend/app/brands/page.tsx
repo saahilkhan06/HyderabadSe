@@ -105,10 +105,29 @@ const categories: BrandCategory[] = [
       { name: "Bingo!", domain: "bingosnacks.com" },
     ],
   },
+  {
+    id: "Cosmetics and Beauty",
+    eyebrow: "05 · Cosmetics and Beauty",
+    title: "Popular Indian beauty brands",
+    description:
+      "Discover popular Indian skincare, makeup and personal care brands, from everyday beauty essentials to herbal skincare favourites, for customers across India and the Gulf.",
+    brands: [
+      { name: "Lakmé", domain: "lakmeindia.com" },
+      { name: "Huda Beauty", domain: "hudabeauty.com" },
+      { name: "Mamaearth", domain: "mamaearth.com" },
+      { name: "Himalaya", domain: "himalayawellness.in" },
+      { name: "Lotus Herbals", domain: "lotus.in" },
+      { name: "Insight", domain: "insightcosmetics.in" },
+      { name: "Dabur", domain: "dabur.com" },
+      { name: "VLCC", domain: "vlcc.com" },
+      { name: "Mars", domain: "marscosmetics.in" },
+      { name: "Swiss Beauty", domain: "swissbeauty.in" },
+    ],
+  },
 
   {
     id: "spices",
-    eyebrow: "05 · Spices",
+    eyebrow: "06 · Spices",
     title: "Popular Indian spice brands",
     description:
       "Everyday masalas, regional blends and pantry staples that can bring familiar Indian cooking closer to home.",
@@ -128,7 +147,7 @@ const categories: BrandCategory[] = [
 
   {
     id: "pickles",
-    eyebrow: "06 · Pickles & chutneys",
+    eyebrow: "07 · Pickles & chutneys",
     title: "Popular Indian pickle brands",
     description:
       "Mango, gongura, chilli, lime and regional favourites. These are especially useful for request-led sourcing because varieties differ by region.",
@@ -148,7 +167,7 @@ const categories: BrandCategory[] = [
 
   {
     id: "tea-coffee",
-    eyebrow: "07 · Chai & coffee",
+    eyebrow: "08 · Chai & coffee",
     title: "Popular Indian tea & coffee brands",
     description:
       "The everyday cup matters. Ask for familiar tea leaves, masala chai blends, filter coffee and more.",
