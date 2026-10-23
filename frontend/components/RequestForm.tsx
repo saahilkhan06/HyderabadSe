@@ -324,7 +324,7 @@ export function RequestForm() {
 
   return (
     <form onSubmit={onSubmit} className="card p-5 sm:p-7" noValidate>
-      <div className="grid gap-5 md:grid-cols-4">
+      <div className="grid gap-5 md:grid-cols-3">
         {/* REQUIRED */}
 
         <Field label="Full name" required>
