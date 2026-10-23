@@ -388,7 +388,7 @@ export function RequestForm() {
           <textarea
             id="productName"
             aria-label="Product name or description"
-            className="field min-h-24 resize-y py-3"
+            className="field min-h-18 resize-y py-3"
             value={form.productName}
             onChange={(e) => set("productName", e.target.value)}
             placeholder="e.g. Sweets & Cookies,Shirts & Sarees,Indian pickles,Medicines,Any other Accessories,etc"
