@@ -324,7 +324,7 @@ export function RequestForm() {
 
   return (
     <form onSubmit={onSubmit} className="card p-5 sm:p-7" noValidate>
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 md:grid-cols-4">
         {/* REQUIRED */}
 
         <Field label="Full name" required>
@@ -388,7 +388,7 @@ export function RequestForm() {
           <textarea
             id="productName"
             aria-label="Product name or description"
-            className="field min-h-15 resize-y py-3"
+            className="field min-h-24 resize-y py-3"
             value={form.productName}
             onChange={(e) => set("productName", e.target.value)}
             placeholder="e.g. Sweets & Cookies,Shirts & Sarees,Indian pickles,Medicines,Any other Accessories,etc"
